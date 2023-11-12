@@ -1,0 +1,46 @@
+@font-face {
+  font-family: "Boxing";
+  src: local("Boxing-Regular"), url("./fonts/Boxing-Regular.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "Excon Bold";
+  src: local("Excon-Bold"), url("./fonts/Excon-Bold.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "Excon Medium";
+  src: local("Excon-Medium"), url("./fonts/Excon-Medium.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "Excon Regular";
+  src: local("Excon-Regular"), url("./fonts/Excon-Regular.otf") format("truetype");
+}
+
+:root {
+  font-family: "Boxing", "Excon Bold", "Excon Medium", "Excon Regular", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
