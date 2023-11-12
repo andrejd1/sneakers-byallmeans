@@ -44,6 +44,7 @@ export const StyledAddNewSneakersButtonContainer = styled.div`
     width: unset;
     background-color: unset;
     border-top: unset;
+    margin-left: 1rem;
     padding: unset;
 
     ${StyledButton} {

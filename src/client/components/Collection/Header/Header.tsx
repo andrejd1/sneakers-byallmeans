@@ -8,6 +8,7 @@ import {
 } from "./Header.styled";
 import { useDeviceSize } from "../../../hooks/useDeviceSize";
 import { breakpointSize } from "../../../ui/theme/breakpoints";
+import SearchForm from "../../SearchForm/SearchForm";
 
 const CollectionHeader: React.FC = () => {
   const { windowWidth } = useDeviceSize();
@@ -17,7 +18,7 @@ const CollectionHeader: React.FC = () => {
     <StyledHeader>
       <Typography variant={isTablet ? "h2" : "h1"}>Your collection</Typography>
       <StyledHeaderButtonsContainer>
-        <div>Search form</div>
+        <SearchForm />
         <StyledAddNewSneakersButtonContainer>
           <Button
             variant={"primary"}

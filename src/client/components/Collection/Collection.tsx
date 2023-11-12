@@ -1,5 +1,5 @@
-import React from "react";
-import { CollectionProps } from "../../types/sneakers";
+import React, { useEffect, useState } from "react";
+import { CollectionProps, Sneaker, SneakerSort } from "../../types/sneakers";
 import Typography from "../Typography/Typography";
 import SortPanel from "./SortPanel/SortPanel";
 import Card from "../Card/Card";
@@ -9,10 +9,31 @@ const Collection: React.FC<CollectionProps> = ({
   sneakers,
   onDeleteSneaker,
 }) => {
-  if (sneakers.length === 0) {
+  const [sortedSneakers, setSortedSneakers] = useState<Sneaker[]>([]);
+  const [sortBy, setSortBy] = useState<keyof SneakerSort | undefined>();
+
+  useEffect(() => {
+    if (sneakers.length > 0) {
+      setSortedSneakers([...sneakers]);
+    }
+  }, [sneakers]);
+
+  useEffect(() => {
+    if (sortBy === "year") {
+      setSortedSneakers([...sortedSneakers].sort((a, b) => a.year - b.year));
+      console.log(sortedSneakers);
+    }
+    if (sortBy === "size") {
+      setSortedSneakers([...sortedSneakers].sort((a, b) => a.size - b.size));
+    }
+    if (sortBy === "price") {
+      setSortedSneakers([...sortedSneakers].sort((a, b) => a.price - b.price));
+    }
+  }, [sortBy]);
+
+  if (sortedSneakers.length === 0) {
     return (
       <div>
-        <Typography variant="h1">Your collection</Typography>
         <Typography variant="h3">No sneakers found</Typography>
       </div>
     );
@@ -20,9 +41,9 @@ const Collection: React.FC<CollectionProps> = ({
 
   return (
     <>
-      <SortPanel />
+      <SortPanel sortBy={sortBy} setSortBy={setSortBy} />
       <CardsContainer>
-        {sneakers.map((sneaker) => (
+        {sortedSneakers.map((sneaker) => (
           <Card
             name={sneaker.name}
             year={sneaker.year}

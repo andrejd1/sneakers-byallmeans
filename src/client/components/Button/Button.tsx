@@ -2,6 +2,7 @@ import { forwardRef } from "react";
 import { ButtonTypes } from "./Button.types";
 import { StyledButton } from "./Button.styled";
 import Icon from "../Icon/Icon";
+import Typography from "../Typography/Typography";
 
 const Button = forwardRef<HTMLButtonElement, ButtonTypes.ButtonProps>(
   ({ variant, label, icon, isActive, ...props }, ref) => {
@@ -11,13 +12,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonTypes.ButtonProps>(
           return (
             <>
               <Icon name={icon.name} color={icon.color} />
-              {label}
+              <Typography variant={"button"}>{label}</Typography>
             </>
           );
         }
         return (
           <>
-            {label}
+            <Typography variant={"button"}>{label}</Typography>
             <Icon name={icon.name} color={icon.color} />
           </>
         );
@@ -32,6 +33,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonTypes.ButtonProps>(
         $iconAlign={icon?.align}
         $isActive={isActive}
         $size={props.size}
+        onClick={props.onClick}
         {...props}
       >
         {resolveButtonLabel()}

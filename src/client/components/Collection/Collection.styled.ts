@@ -6,6 +6,7 @@ export const CardsContainer = styled.div`
   grid-template-columns: 1fr;
   grid-gap: 1rem;
   margin-top: 1rem;
+  margin-bottom: 8.5rem;
 
   @media ${device.tablet} {
     grid-template-columns: 1.5fr 1.5fr;

@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import { ButtonTypes } from "./Button.types";
 import { colors } from "../../ui/theme/colors";
+import { StyledIcon } from "../Icon/Icon.styled";
 
 const resolveContainerVariantStyle = (variant: ButtonTypes.ButtonVariants) =>
   ({
@@ -59,6 +60,10 @@ export const StyledButton = styled.button<ButtonTypes.StyledButtonProps>`
       background-color: ${colors.Red};
       color: ${colors.White};
       border: none;
+
+      ${StyledIcon} {
+        color: ${colors.White};
+      }
     `};
 
   svg {
@@ -66,5 +71,9 @@ export const StyledButton = styled.button<ButtonTypes.StyledButtonProps>`
       !props.$iconAlign || props.$iconAlign === "left"
         ? "margin-right: 0.5rem;"
         : "margin-left: 0.5rem;"};
+  }
+
+  span {
+    white-space: nowrap;
   }
 `;

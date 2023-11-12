@@ -8,6 +8,7 @@ export type Sneaker = {
 };
 
 export type SneakerInput = Omit<Sneaker, "_id">;
+export type SneakerSort = Omit<SneakerInput, "name" | "brand">;
 
 export type CollectionProps = {
   sneakers: Sneaker[];

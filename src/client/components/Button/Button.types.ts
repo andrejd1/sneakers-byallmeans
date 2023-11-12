@@ -1,5 +1,6 @@
 import { IconTypes } from "../Icon/Icon.types";
 import { ThemeColors } from "../../ui/theme/colors";
+import { MouseEventHandler } from "react";
 
 export namespace ButtonTypes {
   export type ButtonVariants = "primary" | "secondary";
@@ -16,6 +17,7 @@ export namespace ButtonTypes {
       color: ThemeColors;
       align?: IconAlign;
     };
+    onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
   };
 
   export type StyledButtonProps = {
