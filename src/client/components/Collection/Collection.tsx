@@ -2,6 +2,8 @@ import React from "react";
 import { CollectionProps } from "../../types/sneakers";
 import Typography from "../Typography/Typography";
 import SortPanel from "./SortPanel/SortPanel";
+import Card from "../Card/Card";
+import { CardsContainer } from "./Collection.styled";
 
 const Collection: React.FC<CollectionProps> = ({
   sneakers,
@@ -10,7 +12,7 @@ const Collection: React.FC<CollectionProps> = ({
   if (sneakers.length === 0) {
     return (
       <div>
-        <Typography variant="h1">Sneaker Collection</Typography>
+        <Typography variant="h1">Your collection</Typography>
         <Typography variant="h3">No sneakers found</Typography>
       </div>
     );
@@ -19,19 +21,18 @@ const Collection: React.FC<CollectionProps> = ({
   return (
     <>
       <SortPanel />
-      <div>
-        <ul>
-          {sneakers.map((sneaker) => (
-            <li key={sneaker._id}>
-              {sneaker.name} - {sneaker.brand} - {sneaker.price} -{" "}
-              {sneaker.size} - {sneaker.year}
-              <button onClick={() => onDeleteSneaker(sneaker._id)}>
-                Delete
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <CardsContainer>
+        {sneakers.map((sneaker) => (
+          <Card
+            name={sneaker.name}
+            year={sneaker.year}
+            size={sneaker.size}
+            price={sneaker.price}
+            brand={sneaker.brand}
+            key={sneaker._id}
+          />
+        ))}
+      </CardsContainer>
     </>
   );
 };

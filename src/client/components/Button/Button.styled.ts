@@ -45,8 +45,9 @@ export const StyledButton = styled.button<ButtonTypes.StyledButtonProps>`
   height: ${(props) => (props.$size === "large" ? "3rem" : "2.25rem")};
   display: flex;
   align-items: center;
-  padding: 0 0.75rem;
-  font-family: "Excon Regular", sans-serif;
+  padding: ${(props) =>
+    props.$size === "large" ? "0.75rem 2rem" : "0.375rem 0.75rem"};
+  font-family: "Excon Medium", sans-serif;
   font-weight: 500;
   font-size: 1rem;
   border-radius: 12px;
