@@ -13,11 +13,8 @@ import { state$ } from "../../store/store";
 import Icon from "../../components/Icon/Icon";
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
-
-type SneakerFormProps = {
-  sneaker?: SneakerInput;
-  onCreateSneaker: (newSneaker: SneakerInput) => void;
-};
+import { SneakerFormProps } from "./SneakerForm.types";
+import Rate from "../../components/Rate/Rate";
 
 const SneakerForm: React.FC<SneakerFormProps> = ({
   sneaker,
@@ -120,7 +117,7 @@ const SneakerForm: React.FC<SneakerFormProps> = ({
             error={Boolean(errors.year)}
             errorMessage={errors.year?.message}
           />
-          {/*stars*/}
+          <Rate rate={sneaker?.rate} />
           <Button
             variant="primary"
             size="large"
