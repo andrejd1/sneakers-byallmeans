@@ -16,6 +16,10 @@ export const StyledSearchFormInput = styled.input`
   border: none;
   margin-left: 0.2rem;
 
+  &:focus {
+    outline: none;
+  }
+
   &::placeholder {
     color: ${colors.Gray80};
   }
