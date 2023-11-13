@@ -7,7 +7,7 @@ export const StyledSortPanel = styled.div`
   flex-direction: row;
   justify-content: start;
   align-items: center;
-  overflow: scroll;
+  overflow: auto;
   margin-top: 1rem;
 
   > label {

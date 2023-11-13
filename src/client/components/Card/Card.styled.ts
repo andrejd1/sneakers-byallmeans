@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { colors } from "../../ui/theme/colors";
+import { StyledIcon } from "../Icon/Icon.styled";
 
 export const StyledCard = styled.div`
   display: flex;
@@ -22,6 +23,12 @@ export const StyledCardTitle = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
+  ${StyledIcon} {
+    &:hover {
+      color: ${colors.Red};
+    }
+  }
 `;
 export const StyledCardInfoContainer = styled.div`
   display: grid;

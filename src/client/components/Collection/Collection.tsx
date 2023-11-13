@@ -21,7 +21,6 @@ const Collection: React.FC<CollectionProps> = ({
   useEffect(() => {
     if (sortBy === "year") {
       setSortedSneakers([...sortedSneakers].sort((a, b) => a.year - b.year));
-      console.log(sortedSneakers);
     }
     if (sortBy === "size") {
       setSortedSneakers([...sortedSneakers].sort((a, b) => a.size - b.size));
