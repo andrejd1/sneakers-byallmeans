@@ -5,6 +5,7 @@ import Typography from "../../components/Typography/Typography";
 import {
   StyledForm,
   StyledFormBackdrop,
+  StyledFormButtonsContainer,
   StyledFormCloseWrapper,
   StyledFormContainer,
   StyledFormTitleContainer,
@@ -16,22 +17,22 @@ import Button from "../../components/Button/Button";
 import { SneakerFormProps } from "./SneakerForm.types";
 import Rate from "../../components/Rate/Rate";
 
-const SneakerForm: React.FC<SneakerFormProps> = ({
-  sneaker,
-  onCreateSneaker,
-}) => {
+const SneakerForm: React.FC<SneakerFormProps> = ({ onCreateSneaker }) => {
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors, isDirty },
+    setValue,
   } = useForm<SneakerInput>();
 
   const onSubmit: SubmitHandler<SneakerInput> = (data) => {
     onCreateSneaker(data);
     reset();
+    state$.UI.isSneakerFormVisible.set(false);
   };
 
+  const sneaker = state$.UI.activeSneaker.get();
   const isSneakerFormVisible = state$.UI.isSneakerFormVisible.get();
 
   return (
@@ -51,7 +52,10 @@ const SneakerForm: React.FC<SneakerFormProps> = ({
                 },
               }
         }
-        onClick={() => state$.UI.isSneakerFormVisible.set(false)}
+        onClick={() => {
+          state$.UI.activeSneaker.set(null);
+          state$.UI.isSneakerFormVisible.set(false);
+        }}
       />
       <StyledFormContainer
         transition={{
@@ -67,7 +71,10 @@ const SneakerForm: React.FC<SneakerFormProps> = ({
             {sneaker?.name ?? `Add sneakers\nto your collection`}
           </Typography>
           <StyledFormCloseWrapper
-            onClick={() => state$.UI.isSneakerFormVisible.set(false)}
+            onClick={() => {
+              state$.UI.activeSneaker.set(null);
+              state$.UI.isSneakerFormVisible.set(false);
+            }}
           >
             <Icon name="close" color="Black" />
           </StyledFormCloseWrapper>
@@ -117,14 +124,37 @@ const SneakerForm: React.FC<SneakerFormProps> = ({
             error={Boolean(errors.year)}
             errorMessage={errors.year?.message}
           />
-          <Rate rate={sneaker?.rate} />
-          <Button
-            variant="primary"
-            size="large"
-            label="Add new sneakers"
-            isActive={false}
-            icon={{ name: "plus", color: "White" }}
+          <Rate
+            rating={sneaker?.rate}
+            setValue={setValue}
+            register={register("rate")}
           />
+          {sneaker ? (
+            <StyledFormButtonsContainer>
+              <Button
+                variant="primary"
+                size="large"
+                label="Save"
+                disabled={isDirty}
+                isActive={false}
+              />
+              <Button
+                variant="primary"
+                size="large"
+                label="Delete"
+                isActive={true}
+                icon={{ name: "trash", color: "White" }}
+              />
+            </StyledFormButtonsContainer>
+          ) : (
+            <Button
+              variant="primary"
+              size="large"
+              label="Add new sneakers"
+              isActive={false}
+              icon={{ name: "plus", color: "White" }}
+            />
+          )}
         </StyledForm>
       </StyledFormContainer>
     </>

@@ -17,6 +17,7 @@ export namespace ButtonTypes {
       color: ThemeColors;
       align?: IconAlign;
     };
+    disabled?: boolean;
     onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
   };
 

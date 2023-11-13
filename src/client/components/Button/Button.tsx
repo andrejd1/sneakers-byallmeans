@@ -23,7 +23,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonTypes.ButtonProps>(
           </>
         );
       }
-      return <>label</>;
+      return <Typography variant={"button"}>{label}</Typography>;
     };
 
     return (

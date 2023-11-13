@@ -50,6 +50,23 @@ export const StyledFormTitleContainer = styled.div`
 
 export const StyledFormCloseWrapper = styled.div``;
 
+export const StyledFormButtonsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 3rem 0;
+  gap: 1rem;
+
+  > ${StyledButton} {
+    place-content: center;
+  }
+
+  @media only screen and ${device.tablet} {
+    > ${StyledButton} {
+      height: 3.5rem;
+    }
+  }
+`;
+
 export const StyledForm = styled.form`
   > ${StyledButton} {
     margin-top: 3rem;

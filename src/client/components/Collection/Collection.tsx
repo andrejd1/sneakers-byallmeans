@@ -28,20 +28,26 @@ const Collection: React.FC = () => {
     return <EmptyCollection />;
   }
 
+  const handleCardOnClick = (sneaker: Sneaker) => {
+    state$.UI.activeSneaker.set(sneaker);
+    state$.UI.isSneakerFormVisible.set(true);
+  };
+
   return (
     <>
       <SortPanel sortBy={activeSort} />
       <CardsContainer>
         {sneakers.map((sneaker) => (
-          <Card
-            name={sneaker.name}
-            year={sneaker.year}
-            size={sneaker.size}
-            price={sneaker.price}
-            brand={sneaker.brand}
-            rate={sneaker.rate}
-            key={sneaker._id}
-          />
+          <div key={sneaker._id} onClick={() => handleCardOnClick(sneaker)}>
+            <Card
+              name={sneaker.name}
+              year={sneaker.year}
+              size={sneaker.size}
+              price={sneaker.price}
+              brand={sneaker.brand}
+              rate={sneaker.rate}
+            />
+          </div>
         ))}
       </CardsContainer>
     </>

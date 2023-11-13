@@ -1,14 +1,15 @@
 import React from "react";
 import { StyledStarsContainer } from "./Stars.styled";
-import { StarsTypes } from "./Stars.types";
 import Icon from "../Icon/Icon";
+import { StarsTypes } from "./Stars.types";
 
-const Stars: React.FC<StarsTypes> = ({ rating }) => {
-  const [rate, setRate] = React.useState(rating);
+const Stars: React.FC<StarsTypes> = ({ rating, setRating, isReadonly }) => {
   const [hover, setHover] = React.useState(0);
 
   const handleRateChange = (index: number) => {
-    setRate(index + 1);
+    if (setRating) {
+      setRating(index + 1);
+    }
   };
 
   return (
@@ -18,10 +19,10 @@ const Stars: React.FC<StarsTypes> = ({ rating }) => {
           <div
             key={i}
             onClick={() => handleRateChange(i)}
-            onMouseEnter={() => setHover(i + 1)}
-            onMouseLeave={() => setHover(rate ?? 0)}
+            onMouseEnter={() => !isReadonly && setHover(i + 1)}
+            onMouseLeave={() => !isReadonly && setHover(rating ?? 0)}
           >
-            {i + 1 <= (hover || (rate ?? 0)) ? (
+            {i + 1 <= (hover || (rating ?? 0)) ? (
               <Icon name="star-filled" />
             ) : (
               <Icon name="star-empty" />

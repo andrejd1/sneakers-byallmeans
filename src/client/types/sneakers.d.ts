@@ -5,7 +5,7 @@ export type Sneaker = {
   price: number;
   size: number;
   year: number;
-  rate: number;
+  rate?: number;
 };
 
 export type SneakerInput = Omit<Sneaker, "_id">;

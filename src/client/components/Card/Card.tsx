@@ -8,18 +8,28 @@ import {
 import Typography from "../Typography/Typography";
 import Icon from "../Icon/Icon";
 import { SneakerInput } from "../../types/sneakers";
+import Stars from "../Stars/Stars";
 
-const Card: React.FC<SneakerInput> = ({ name, brand, price, size, year }) => {
+const Card: React.FC<SneakerInput> = ({
+  name,
+  brand,
+  price,
+  size,
+  year,
+  rate,
+}) => {
   return (
     <StyledCard>
       <StyledCardTitle>
         <Typography variant={"h3"} style={{ margin: 0 }}>
           {name}
         </Typography>
-        <Icon name="trash" />
+        <div onClick={() => {}}>
+          <Icon name="trash" />
+        </div>
       </StyledCardTitle>
       <Typography variant={"copy"}>{brand}</Typography>
-      <div>stars</div>
+      <Stars rating={rate} isReadonly={true} />
       <StyledCardInfoContainer>
         <StyledCardInfo>
           <Typography variant={"subhead"} style={{ margin: 0 }}>

@@ -1,8 +1,8 @@
 import React from "react";
 import { StyledInput, StyledInputContainer } from "./Input.styled";
 import Typography from "../Typography/Typography";
-import { InputProps } from "../../types/common";
 import { colors } from "../../ui/theme/colors";
+import { InputProps } from "./Input.types";
 
 const Input: React.FC<InputProps> = ({
   label,

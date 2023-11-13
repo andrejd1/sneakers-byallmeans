@@ -54,6 +54,11 @@ export const StyledButton = styled.button<ButtonTypes.StyledButtonProps>`
   border-radius: 12px;
   cursor: pointer;
   border: none;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
   ${(props) => resolveContainerVariantStyle(props.$variant)}
   ${(props) =>
     props.$isActive &&
