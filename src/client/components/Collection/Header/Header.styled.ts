@@ -38,7 +38,7 @@ export const StyledAddNewSneakersButtonContainer = styled.div`
     width: calc(100% - 2.75rem);
   }
 
-  @media ${device.tablet} {
+  @media ${device.laptop} {
     position: relative;
     bottom: unset;
     width: unset;
