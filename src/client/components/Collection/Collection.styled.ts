@@ -9,10 +9,10 @@ export const CardsContainer = styled.div`
   margin-bottom: 8.5rem;
 
   @media only screen and ${device.tablet} {
-    grid-template-columns: 1.5fr 1.5fr;
+    grid-template-columns: 1fr 1fr;
+  }
 
-    @media only screen and ${device.laptop} {
-      grid-template-columns: 1fr 1fr 1fr;
-    }
+  @media only screen and ${device.laptop} {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 `;

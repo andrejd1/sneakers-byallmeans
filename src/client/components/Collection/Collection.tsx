@@ -1,54 +1,45 @@
-import React, { useEffect, useState } from "react";
-import { CollectionProps, Sneaker, SneakerSort } from "../../types/sneakers";
-import Typography from "../Typography/Typography";
+import React, { useEffect } from "react";
+import { Sneaker } from "../../types/sneakers";
 import SortPanel from "./SortPanel/SortPanel";
 import Card from "../Card/Card";
 import { CardsContainer } from "./Collection.styled";
+import { state$ } from "../../store/store";
+import EmptyCollection from "./EmptyCollection/EmptyCollection";
 
-const Collection: React.FC<CollectionProps> = ({
-  sneakers,
-  onDeleteSneaker,
-}) => {
-  const [sortedSneakers, setSortedSneakers] = useState<Sneaker[]>([]);
-  const [sortBy, setSortBy] = useState<keyof SneakerSort | undefined>();
-
-  useEffect(() => {
-    if (sneakers.length > 0) {
-      setSortedSneakers([...sneakers]);
-    }
-  }, [sneakers]);
+const Collection: React.FC = () => {
+  const sneakers = [...state$.sneakers.get()];
+  const activeSort = state$.UI.activeSort.get();
 
   useEffect(() => {
-    if (sortBy === "year") {
-      setSortedSneakers([...sortedSneakers].sort((a, b) => a.year - b.year));
+    const sortedSneakers: Sneaker[] = [...state$.sneakers.get()];
+    if (activeSort === "year") {
+      sortedSneakers.sort((a, b) => a.year - b.year);
     }
-    if (sortBy === "size") {
-      setSortedSneakers([...sortedSneakers].sort((a, b) => a.size - b.size));
+    if (activeSort === "size") {
+      sortedSneakers.sort((a, b) => a.size - b.size);
     }
-    if (sortBy === "price") {
-      setSortedSneakers([...sortedSneakers].sort((a, b) => a.price - b.price));
+    if (activeSort === "price") {
+      sortedSneakers.sort((a, b) => a.price - b.price);
     }
-  }, [sortBy]);
+    state$.sneakers.set(sortedSneakers);
+  }, [activeSort, sneakers]);
 
-  if (sortedSneakers.length === 0) {
-    return (
-      <div>
-        <Typography variant="h3">No sneakers found</Typography>
-      </div>
-    );
+  if (sneakers.length === 0) {
+    return <EmptyCollection />;
   }
 
   return (
     <>
-      <SortPanel sortBy={sortBy} setSortBy={setSortBy} />
+      <SortPanel sortBy={activeSort} />
       <CardsContainer>
-        {sortedSneakers.map((sneaker) => (
+        {sneakers.map((sneaker) => (
           <Card
             name={sneaker.name}
             year={sneaker.year}
             size={sneaker.size}
             price={sneaker.price}
             brand={sneaker.brand}
+            rate={sneaker.rate}
             key={sneaker._id}
           />
         ))}

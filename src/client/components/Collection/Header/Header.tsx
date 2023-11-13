@@ -9,6 +9,7 @@ import {
 import { useDeviceSize } from "../../../hooks/useDeviceSize";
 import { breakpointSize } from "../../../ui/theme/breakpoints";
 import SearchForm from "../../SearchForm/SearchForm";
+import { state$ } from "../../../store/store";
 
 const CollectionHeader: React.FC = () => {
   const { windowWidth } = useDeviceSize();
@@ -29,6 +30,7 @@ const CollectionHeader: React.FC = () => {
               name: "plus",
               color: "White",
             }}
+            onClick={() => state$.UI.isSneakerFormVisible.set(true)}
           />
         </StyledAddNewSneakersButtonContainer>
       </StyledHeaderButtonsContainer>

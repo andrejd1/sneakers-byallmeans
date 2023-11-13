@@ -5,8 +5,9 @@ import { StyledSortPanel } from "./SortPanel.styled";
 import { useDeviceSize } from "../../../hooks/useDeviceSize";
 import { breakpointSize } from "../../../ui/theme/breakpoints";
 import { SortPanelProps } from "./SortPanel.types";
+import { state$ } from "../../../store/store";
 
-const SortPanel: React.FC<SortPanelProps> = ({ sortBy, setSortBy }) => {
+const SortPanel: React.FC<SortPanelProps> = ({ sortBy }) => {
   const { windowWidth } = useDeviceSize();
   const isTablet = windowWidth <= breakpointSize.tablet;
   const isSortedByYear = sortBy === "year";
@@ -24,7 +25,7 @@ const SortPanel: React.FC<SortPanelProps> = ({ sortBy, setSortBy }) => {
           name: "calendar",
           color: isSortedByYear ? "White" : "Black",
         }}
-        onClick={() => setSortBy("year")}
+        onClick={() => state$.UI.activeSort.set("year")}
         isActive={isSortedByYear}
       />
       <Button
@@ -35,7 +36,7 @@ const SortPanel: React.FC<SortPanelProps> = ({ sortBy, setSortBy }) => {
           name: "size",
           color: isSortedBySize ? "White" : "Black",
         }}
-        onClick={() => setSortBy("size")}
+        onClick={() => state$.UI.activeSort.set("size")}
         isActive={isSortedBySize}
       />
       <Button
@@ -46,7 +47,7 @@ const SortPanel: React.FC<SortPanelProps> = ({ sortBy, setSortBy }) => {
           name: "dollar-sign",
           color: isSortedByPrice ? "White" : "Black",
         }}
-        onClick={() => setSortBy("price")}
+        onClick={() => state$.UI.activeSort.set("price")}
         isActive={isSortedByPrice}
       />
     </StyledSortPanel>

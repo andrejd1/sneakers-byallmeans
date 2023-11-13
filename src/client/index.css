@@ -33,5 +33,5 @@
 body {
   background-color: #EEEFF0;
   min-width: 320px;
-  min-height: 100vh;
+  margin: 0;
 }

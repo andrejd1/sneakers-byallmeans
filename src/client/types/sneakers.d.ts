@@ -5,12 +5,8 @@ export type Sneaker = {
   price: number;
   size: number;
   year: number;
+  rate: number;
 };
 
 export type SneakerInput = Omit<Sneaker, "_id">;
-export type SneakerSort = Omit<SneakerInput, "name" | "brand">;
-
-export type CollectionProps = {
-  sneakers: Sneaker[];
-  onDeleteSneaker: (id: string) => void;
-};
+export type SneakerSort = Omit<SneakerInput, "name" | "brand" | "rate">;

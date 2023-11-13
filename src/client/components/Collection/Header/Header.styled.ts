@@ -20,6 +20,7 @@ export const StyledHeaderButtonsContainer = styled.header`
 
   @media only screen and ${device.laptop} {
     flex-direction: row;
+    margin-left: 1.5rem;
   }
 `;
 

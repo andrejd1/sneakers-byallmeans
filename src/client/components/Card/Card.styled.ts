@@ -12,6 +12,7 @@ export const StyledCard = styled.div`
   border-radius: 0.75rem;
   cursor: pointer;
   border: 1px solid transparent;
+  box-shadow: 0 0.1875rem 0.3125rem rgba(6, 31, 106, 0.05);
 
   &:hover {
     border: 1px solid ${colors.Hover};
