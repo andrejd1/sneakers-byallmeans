@@ -22,7 +22,7 @@ export const StyledSortPanel = styled.div`
     }
   }
 
-  @media ${device.tablet} {
+  @media only screen and ${device.tablet} {
     justify-content: end;
   }
 `;

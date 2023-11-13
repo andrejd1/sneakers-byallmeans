@@ -8,7 +8,7 @@ export const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   flex-direction: column;
-  @media ${device.laptop} {
+  @media only screen and ${device.laptop} {
     flex-direction: row;
     justify-content: space-between;
   }
@@ -18,7 +18,7 @@ export const StyledHeaderButtonsContainer = styled.header`
   align-items: center;
   flex-direction: column;
 
-  @media ${device.laptop} {
+  @media only screen and ${device.laptop} {
     flex-direction: row;
   }
 `;
@@ -38,7 +38,7 @@ export const StyledAddNewSneakersButtonContainer = styled.div`
     width: calc(100% - 2.75rem);
   }
 
-  @media ${device.laptop} {
+  @media only screen and ${device.laptop} {
     position: relative;
     bottom: unset;
     width: unset;

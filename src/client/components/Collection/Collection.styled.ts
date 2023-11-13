@@ -8,10 +8,10 @@ export const CardsContainer = styled.div`
   margin-top: 1rem;
   margin-bottom: 8.5rem;
 
-  @media ${device.tablet} {
+  @media only screen and ${device.tablet} {
     grid-template-columns: 1.5fr 1.5fr;
 
-    @media ${device.laptop} {
+    @media only screen and ${device.laptop} {
       grid-template-columns: 1fr 1fr 1fr;
     }
   }
