@@ -7,16 +7,18 @@ import {
 } from "./Card.styled";
 import Typography from "../Typography/Typography";
 import Icon from "../Icon/Icon";
-import { SneakerInput } from "../../types/sneakers";
+import { Sneaker } from "../../types/sneakers";
 import Stars from "../Stars/Stars";
 
-const Card: React.FC<SneakerInput> = ({
+const Card: React.FC<Sneaker> = ({
+  _id,
   name,
   brand,
   price,
   size,
   year,
   rate,
+  onDeleteSneaker,
 }) => {
   return (
     <StyledCard>
@@ -24,7 +26,12 @@ const Card: React.FC<SneakerInput> = ({
         <Typography variant={"h3"} style={{ margin: 0 }}>
           {name}
         </Typography>
-        <div onClick={() => {}}>
+        <div
+          onClick={(event) => {
+            event.stopPropagation();
+            onDeleteSneaker(_id);
+          }}
+        >
           <Icon name="trash" />
         </div>
       </StyledCardTitle>

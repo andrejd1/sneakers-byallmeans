@@ -1,6 +1,6 @@
 import React, { Suspense, useEffect } from "react";
 import { useMutation, useQuery } from "react-query";
-import { createSneaker, fetchSneakers } from "./api/endpoints";
+import { createSneaker, deleteSneaker, fetchSneakers } from "./api/endpoints";
 import { SneakerInput } from "./types/sneakers";
 import SneakerCollection from "./views/SneakerCollection/SneakerCollection";
 import Container from "./components/Container/Container";
@@ -44,10 +44,10 @@ const App: React.FC = () => {
     await mutation.mutateAsync(newSneaker);
   };
 
-  // const handleDeleteSneaker = async (id: string) => {
-  //   await deleteSneaker(id);
-  //   refetch();
-  // };
+  const handleDeleteSneaker = async (id: string) => {
+    await deleteSneaker(id);
+    refetch();
+  };
 
   enableReactTracking({
     auto: true,
@@ -67,16 +67,15 @@ const App: React.FC = () => {
 
   return (
     <Container>
-      {/* Sneaker Input Form */}
       {isSneakerFormVisible && (
         <Suspense fallback={<Loader />}>
-          <LazySneakerForm onCreateSneaker={handleCreateSneaker} />
+          <LazySneakerForm
+            onCreateSneaker={handleCreateSneaker}
+            onDeleteSneaker={handleDeleteSneaker}
+          />
         </Suspense>
       )}
-      {/* Sneaker Collection */}
-      <SneakerCollection />
-      {/* Sneaker Sorting */}
-      {/* Query-like Interaction */}
+      <SneakerCollection onDeleteSneaker={handleDeleteSneaker} />
     </Container>
   );
 };

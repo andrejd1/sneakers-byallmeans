@@ -5,8 +5,9 @@ import Card from "../Card/Card";
 import { CardsContainer } from "./Collection.styled";
 import { state$ } from "../../store/store";
 import EmptyCollection from "./EmptyCollection/EmptyCollection";
+import { SneakerCollectionTypes } from "../../views/SneakerCollection/SneakerCollection.types";
 
-const Collection: React.FC = () => {
+const Collection: React.FC<SneakerCollectionTypes> = ({ onDeleteSneaker }) => {
   const sneakers = [...state$.sneakers.get()];
   const activeSort = state$.UI.activeSort.get();
 
@@ -40,12 +41,14 @@ const Collection: React.FC = () => {
         {sneakers.map((sneaker) => (
           <div key={sneaker._id} onClick={() => handleCardOnClick(sneaker)}>
             <Card
+              _id={sneaker._id}
               name={sneaker.name}
               year={sneaker.year}
               size={sneaker.size}
               price={sneaker.price}
               brand={sneaker.brand}
               rate={sneaker.rate}
+              onDeleteSneaker={onDeleteSneaker}
             />
           </div>
         ))}

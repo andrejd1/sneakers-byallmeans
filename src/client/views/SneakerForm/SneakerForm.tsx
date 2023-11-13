@@ -17,7 +17,10 @@ import Button from "../../components/Button/Button";
 import { SneakerFormProps } from "./SneakerForm.types";
 import Rate from "../../components/Rate/Rate";
 
-const SneakerForm: React.FC<SneakerFormProps> = ({ onCreateSneaker }) => {
+const SneakerForm: React.FC<SneakerFormProps> = ({
+  onCreateSneaker,
+  onDeleteSneaker,
+}) => {
   const {
     register,
     handleSubmit,
@@ -143,6 +146,13 @@ const SneakerForm: React.FC<SneakerFormProps> = ({ onCreateSneaker }) => {
                 size="large"
                 label="Delete"
                 isActive={true}
+                onClick={(event) => {
+                  event.preventDefault();
+                  if (onDeleteSneaker) {
+                    onDeleteSneaker(sneaker._id);
+                    state$.UI.isSneakerFormVisible.set(false);
+                  }
+                }}
                 icon={{ name: "trash", color: "White" }}
               />
             </StyledFormButtonsContainer>
