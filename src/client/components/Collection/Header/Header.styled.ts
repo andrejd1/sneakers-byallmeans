@@ -13,14 +13,17 @@ export const StyledHeader = styled.header`
     justify-content: space-between;
   }
 `;
-export const StyledHeaderButtonsContainer = styled.header`
+export const StyledHeaderButtonsContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  flex-wrap: wrap;
 
   @media only screen and ${device.laptop} {
     flex-direction: row;
+    justify-content: end;
     margin-left: 1.5rem;
+    gap: 1rem;
   }
 `;
 
@@ -45,7 +48,6 @@ export const StyledAddNewSneakersButtonContainer = styled.div`
     width: unset;
     background-color: unset;
     border-top: unset;
-    margin-left: 1rem;
     padding: unset;
 
     ${StyledButton} {

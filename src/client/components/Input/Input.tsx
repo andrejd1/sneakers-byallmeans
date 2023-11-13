@@ -4,10 +4,14 @@ import Typography from "../Typography/Typography";
 import { InputProps } from "../../types/common";
 import { colors } from "../../ui/theme/colors";
 
-const Input: React.FC<InputProps> = React.forwardRef<
-  HTMLInputElement,
-  InputProps
->(({ label, type, defaultValue, register, error, errorMessage }) => {
+const Input: React.FC<InputProps> = ({
+  label,
+  type,
+  defaultValue,
+  register,
+  error,
+  errorMessage,
+}) => {
   return (
     <StyledInputContainer>
       <Typography variant="label">{label}</Typography>
@@ -19,6 +23,6 @@ const Input: React.FC<InputProps> = React.forwardRef<
       )}
     </StyledInputContainer>
   );
-});
+};
 
 export default Input;

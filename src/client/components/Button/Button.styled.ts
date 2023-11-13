@@ -53,6 +53,7 @@ export const StyledButton = styled.button<ButtonTypes.StyledButtonProps>`
   font-size: 1rem;
   border-radius: 12px;
   cursor: pointer;
+  border: none;
   ${(props) => resolveContainerVariantStyle(props.$variant)}
   ${(props) =>
     props.$isActive &&

@@ -6,5 +6,6 @@ export const StyledContainer = styled.div`
   @media only screen and ${device.laptop} {
     margin: 0 auto;
     padding: 0 6.25rem;
+    max-width: 82rem;
   }
 `;
