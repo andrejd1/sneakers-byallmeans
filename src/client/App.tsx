@@ -1,6 +1,11 @@
 import React, { Suspense, useEffect } from "react";
 import { useMutation, useQuery } from "react-query";
-import { createSneaker, deleteSneaker, fetchSneakers } from "./api/endpoints";
+import {
+  createSneaker,
+  deleteSneaker,
+  fetchSneakers,
+  updateSneaker,
+} from "./api/endpoints";
 import { SneakerInput } from "./types/sneakers";
 import SneakerCollection from "./views/SneakerCollection/SneakerCollection";
 import Container from "./components/Container/Container";
@@ -45,6 +50,14 @@ const App: React.FC = () => {
     await mutation.mutateAsync(newSneaker);
   };
 
+  const handleUpdateSneaker = async (
+    id: string,
+    updatedSneaker: SneakerInput,
+  ) => {
+    await updateSneaker(id, updatedSneaker);
+    refetch();
+  };
+
   const handleDeleteSneaker = async (id: string) => {
     await deleteSneaker(id);
     refetch();
@@ -72,6 +85,7 @@ const App: React.FC = () => {
         <Suspense fallback={<Loader />}>
           <LazySneakerForm
             onCreateSneaker={handleCreateSneaker}
+            onUpdateSneaker={handleUpdateSneaker}
             onDeleteSneaker={handleDeleteSneaker}
           />
         </Suspense>

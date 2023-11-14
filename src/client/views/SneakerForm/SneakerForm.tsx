@@ -19,24 +19,32 @@ import Rate from "../../components/Rate/Rate";
 
 const SneakerForm: React.FC<SneakerFormProps> = ({
   onCreateSneaker,
+  onUpdateSneaker,
   onDeleteSneaker,
 }) => {
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isDirty },
+    formState: { errors, dirtyFields },
     setValue,
-  } = useForm<SneakerInput>();
-
-  const onSubmit: SubmitHandler<SneakerInput> = (data) => {
-    onCreateSneaker(data);
-    reset();
-    state$.UI.isSneakerFormVisible.set(false);
-  };
+  } = useForm<SneakerInput>({ mode: "onChange" });
 
   const sneaker = state$.UI.activeSneaker.get();
   const isSneakerFormVisible = state$.UI.isSneakerFormVisible.get();
+
+  const onSubmit: SubmitHandler<SneakerInput> = (data) => {
+    if (sneaker !== null) {
+      if (onUpdateSneaker) {
+        onUpdateSneaker(sneaker._id, data);
+      }
+    } else {
+      onCreateSneaker(data);
+    }
+    reset();
+    state$.UI.activeSneaker.set(null);
+    state$.UI.isSneakerFormVisible.set(false);
+  };
 
   return (
     <>
@@ -138,7 +146,7 @@ const SneakerForm: React.FC<SneakerFormProps> = ({
                 variant="primary"
                 size="large"
                 label="Save"
-                disabled={isDirty}
+                disabled={Object.keys(dirtyFields).length === 0}
                 isActive={false}
               />
               <Button
