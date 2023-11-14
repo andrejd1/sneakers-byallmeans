@@ -25,6 +25,7 @@ const App: React.FC = () => {
   useEffect(() => {
     if (sneakers !== undefined && sneakers.length > 0) {
       state$.sneakers.set([...sneakers]);
+      state$.searchSneakers.set([...sneakers]);
     }
   }, [sneakers]);
 
