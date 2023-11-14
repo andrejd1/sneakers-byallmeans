@@ -36,7 +36,7 @@ const Card: React.FC<Sneaker> = ({
         </div>
       </StyledCardTitle>
       <Typography variant={"copy"}>{brand}</Typography>
-      <Stars rating={rate} isReadonly={true} />
+      <Stars rating={rate} variant="small" isReadonly={true} />
       <StyledCardInfoContainer>
         <StyledCardInfo>
           <Typography variant={"subhead"} style={{ margin: 0 }}>

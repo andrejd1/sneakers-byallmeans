@@ -12,6 +12,8 @@ import { SizeIcon } from "./icons/SizeIcon";
 import { StarEmptyIcon } from "./icons/StarEmptyIcon";
 import { StarFilledIcon } from "./icons/StarFilledIcon";
 import { TrashIcon } from "./icons/TrashIcon";
+import { StarEmptySmallIcon } from "./icons/StarEmptySmallIcon";
+import { StarFilledSmallIcon } from "./icons/StarFilledSmallIcon";
 
 const Icon = ({ name, color, onClick }: IconProps) => {
   const iconProps: IconProps = {
@@ -41,6 +43,10 @@ const Icon = ({ name, color, onClick }: IconProps) => {
         return <StarEmptyIcon {...iconProps} />;
       case "star-filled":
         return <StarFilledIcon {...iconProps} />;
+      case "star-empty-small":
+        return <StarEmptySmallIcon {...iconProps} />;
+      case "star-filled-small":
+        return <StarFilledSmallIcon {...iconProps} />;
       case "trash":
         return <TrashIcon {...iconProps} />;
       default:

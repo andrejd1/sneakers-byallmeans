@@ -12,7 +12,9 @@ export namespace IconTypes {
     | "search"
     | "size"
     | "star-empty"
+    | "star-empty-small"
     | "star-filled"
+    | "star-filled-small"
     | "trash";
 }
 
