@@ -12,18 +12,16 @@ const SearchForm: React.FC = () => {
   const activeSort = state$.UI.activeSort.get();
 
   useEffect(() => {
-    if (searchValue.get() !== undefined && searchValue.get() !== "") {
+    if (searchValue.get() !== "") {
       searchSneakers.set(
-        searchValue.get().length > 0
-          ? [...state$.sneakers.get()].filter((sneaker) => {
-              const lowerSearchValue = searchValue.get().toLowerCase();
+        [...state$.sneakers.get()].filter((sneaker) => {
+          const lowerSearchValue = searchValue.get().toLowerCase();
 
-              return (
-                sneaker.name.toLowerCase().includes(lowerSearchValue) ||
-                sneaker.brand.toLowerCase().includes(lowerSearchValue)
-              );
-            })
-          : [...sneakers.get()],
+          return (
+            sneaker.name.toLowerCase().includes(lowerSearchValue) ||
+            sneaker.brand.toLowerCase().includes(lowerSearchValue)
+          );
+        }),
       );
     } else {
       searchSneakers.set([...sneakers.get()]);

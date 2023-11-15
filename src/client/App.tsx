@@ -14,6 +14,7 @@ import { state$ } from "./store/store";
 import Error from "./components/Error/Error";
 import Loader from "./components/Loader/Loader";
 import { GlobalStyles } from "./globalStyles";
+import EmptyCollection from "./components/Empty/EmptyCollection/EmptyCollection";
 
 const LazySneakerForm = React.lazy(
   () => import("./views/SneakerForm/SneakerForm"),
@@ -78,6 +79,10 @@ const App: React.FC = () => {
 
   if (isLoading) {
     return <Loader />;
+  }
+
+  if (sneakers?.length === 0) {
+    return <EmptyCollection />;
   }
 
   return (

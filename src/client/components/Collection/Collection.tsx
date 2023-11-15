@@ -6,7 +6,6 @@ import { CardsContainer } from "./Collection.styled";
 import { state$ } from "../../store/store";
 import { SneakerCollectionTypes } from "../../views/SneakerCollection/SneakerCollection.types";
 import EmptySearchForm from "../Empty/EmptySearchForm/EmptySearchForm";
-import EmptyCollection from "../Empty/EmptyCollection/EmptyCollection";
 
 const Collection: React.FC<SneakerCollectionTypes> = ({ onDeleteSneaker }) => {
   const searchValue = state$.UI.searchValue;
@@ -14,21 +13,14 @@ const Collection: React.FC<SneakerCollectionTypes> = ({ onDeleteSneaker }) => {
     ? [...state$.searchSneakers.get()]
     : [...state$.sneakers.get()];
 
-  if (state$.searchSneakers.get().length === 0 && searchValue.get() !== "") {
-    return <EmptySearchForm />;
-  }
-
-  if (
-    state$.sneakers.get().length === 0 &&
-    (searchValue.get() === "" || searchValue.get() === undefined)
-  ) {
-    return <EmptyCollection />;
-  }
-
   const handleCardOnClick = (sneaker: Sneaker) => {
     state$.UI.activeSneaker.set(sneaker);
     state$.UI.isSneakerFormVisible.set(true);
   };
+
+  if (sneakers.length === 0) {
+    return <EmptySearchForm />;
+  }
 
   return (
     <>

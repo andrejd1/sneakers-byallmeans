@@ -7,7 +7,7 @@ export const state$ = observable({
     activeSort: SneakerSort.yearUp as SneakerSort,
     isSneakerFormVisible: false as boolean,
     activeSneaker: null as Sneaker | null,
-    searchValue: undefined as string | undefined,
+    searchValue: "" as string,
   },
   searchSneakers: [] as Sneaker[],
   sneakers: [] as Sneaker[],
