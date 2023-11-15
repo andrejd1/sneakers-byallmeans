@@ -10,10 +10,6 @@ export const StyledSortPanel = styled.div`
   overflow: auto;
   margin-top: 1rem;
 
-  > label {
-    margin-right: 1.5rem;
-  }
-
   ${StyledButton} {
     margin-right: 0.5rem;
 
@@ -23,6 +19,16 @@ export const StyledSortPanel = styled.div`
   }
 
   @media only screen and ${device.tablet} {
-    justify-content: end;
+    justify-content: space-between;
+  }
+`;
+
+export const StyledSortPanelButtonsWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  > label {
+    margin-right: 1.5rem;
   }
 `;
