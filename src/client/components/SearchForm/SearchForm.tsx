@@ -35,7 +35,6 @@ const SearchForm: React.FC = () => {
       searchValue.get() !== undefined && searchValue.get() !== ""
         ? [...state$.searchSneakers.get()]
         : [...state$.sneakers.get()];
-    console.log(sortedSneakers);
     switch (activeSort) {
       case SneakerSort.yearUp:
         sortedSneakers.sort((a, b) => a.year - b.year);
