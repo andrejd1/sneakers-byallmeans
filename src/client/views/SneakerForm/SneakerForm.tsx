@@ -160,7 +160,12 @@ const SneakerForm: React.FC<SneakerFormTypes.SneakerFormProps> = ({
                 isActive={true}
                 onClick={(event) => {
                   event.preventDefault();
-                  if (onDeleteSneaker) {
+                  if (
+                    onDeleteSneaker &&
+                    window.confirm(
+                      `Are you sure you want to delete ${sneaker.brand} ${sneaker.name}?`,
+                    )
+                  ) {
                     onDeleteSneaker(sneaker._id);
                     state$.UI.isSneakerFormVisible.set(false);
                   }

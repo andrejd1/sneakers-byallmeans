@@ -29,7 +29,13 @@ const Card: React.FC<Sneaker> = ({
         <div
           onClick={(event) => {
             event.stopPropagation();
-            onDeleteSneaker(_id);
+            if (
+              window.confirm(
+                `Are you sure you want to delete ${brand} ${name}?`,
+              )
+            ) {
+              onDeleteSneaker(_id);
+            }
           }}
         >
           <Icon name="trash" />
