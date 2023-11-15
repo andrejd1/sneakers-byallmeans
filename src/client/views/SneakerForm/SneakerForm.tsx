@@ -14,10 +14,11 @@ import { state$ } from "../../store/store";
 import Icon from "../../components/Icon/Icon";
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
-import { SneakerFormProps } from "./SneakerForm.types";
+import { SneakerFormTypes } from "./SneakerForm.types";
 import Rate from "../../components/Rate/Rate";
+import useScrollPosition from "../../hooks/useScrollPosition";
 
-const SneakerForm: React.FC<SneakerFormProps> = ({
+const SneakerForm: React.FC<SneakerFormTypes.SneakerFormProps> = ({
   onCreateSneaker,
   onUpdateSneaker,
   onDeleteSneaker,
@@ -32,6 +33,7 @@ const SneakerForm: React.FC<SneakerFormProps> = ({
 
   const sneaker = state$.UI.activeSneaker.get();
   const isSneakerFormVisible = state$.UI.isSneakerFormVisible.get();
+  const scrollPosition = useScrollPosition();
 
   const onSubmit: SubmitHandler<SneakerInput> = (data) => {
     if (sneaker !== null) {
@@ -67,6 +69,7 @@ const SneakerForm: React.FC<SneakerFormProps> = ({
           state$.UI.activeSneaker.set(null);
           state$.UI.isSneakerFormVisible.set(false);
         }}
+        $scrollPosition={scrollPosition}
       />
       <StyledFormContainer
         transition={{
@@ -76,6 +79,7 @@ const SneakerForm: React.FC<SneakerFormProps> = ({
         }}
         initial={{ x: "100%" }}
         animate={isSneakerFormVisible ? { x: "0%" } : { x: "100%" }}
+        $scrollPosition={scrollPosition}
       >
         <StyledFormTitleContainer>
           <Typography variant="h2">

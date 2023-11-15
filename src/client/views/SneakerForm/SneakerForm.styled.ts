@@ -4,10 +4,13 @@ import { zIndexes } from "../../ui/theme/zIndexes";
 import { colors } from "../../ui/theme/colors";
 import { StyledButton } from "../../components/Button/Button.styled";
 import { device } from "../../ui/theme/breakpoints";
+import { SneakerFormTypes } from "./SneakerForm.types";
 
-export const StyledFormBackdrop = styled(motion.div)`
+export const StyledFormBackdrop = styled(
+  motion.div,
+)<SneakerFormTypes.StyledFormProps>`
   position: absolute;
-  top: 0;
+  top: ${(props) => props.$scrollPosition}px;
   right: 0;
   z-index: ${zIndexes.rightSidebar};
   display: flex;
@@ -15,9 +18,11 @@ export const StyledFormBackdrop = styled(motion.div)`
   height: 100%;
   background: ${colors.Black};
 `;
-export const StyledFormContainer = styled(motion.div)`
+export const StyledFormContainer = styled(
+  motion.div,
+)<SneakerFormTypes.StyledFormProps>`
   position: absolute;
-  top: 0;
+  top: ${(props) => props.$scrollPosition}px;
   right: 0;
   z-index: ${zIndexes.rightSidebar};
   display: flex;
@@ -58,6 +63,10 @@ export const StyledFormButtonsContainer = styled.div`
 
   > ${StyledButton} {
     place-content: center;
+
+    &:last-child {
+      margin-bottom: 4.5rem;
+    }
   }
 
   @media only screen and ${device.tablet} {
