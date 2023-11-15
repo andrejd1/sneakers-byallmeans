@@ -13,6 +13,7 @@ import { enableReactTracking } from "@legendapp/state/config/enableReactTracking
 import { state$ } from "./store/store";
 import Error from "./components/Error/Error";
 import Loader from "./components/Loader/Loader";
+import { GlobalStyles } from "./globalStyles";
 
 const LazySneakerForm = React.lazy(
   () => import("./views/SneakerForm/SneakerForm"),
@@ -80,18 +81,21 @@ const App: React.FC = () => {
   }
 
   return (
-    <Container>
-      {isSneakerFormVisible && (
-        <Suspense fallback={null}>
-          <LazySneakerForm
-            onCreateSneaker={handleCreateSneaker}
-            onUpdateSneaker={handleUpdateSneaker}
-            onDeleteSneaker={handleDeleteSneaker}
-          />
-        </Suspense>
-      )}
-      <SneakerCollection onDeleteSneaker={handleDeleteSneaker} />
-    </Container>
+    <>
+      <GlobalStyles />
+      <Container>
+        {isSneakerFormVisible && (
+          <Suspense fallback={null}>
+            <LazySneakerForm
+              onCreateSneaker={handleCreateSneaker}
+              onUpdateSneaker={handleUpdateSneaker}
+              onDeleteSneaker={handleDeleteSneaker}
+            />
+          </Suspense>
+        )}
+        <SneakerCollection onDeleteSneaker={handleDeleteSneaker} />
+      </Container>
+    </>
   );
 };
 
