@@ -1,39 +1,27 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Sneaker } from "../../types/sneakers";
 import SortPanel from "./SortPanel/SortPanel";
 import Card from "../Card/Card";
 import { CardsContainer } from "./Collection.styled";
 import { state$ } from "../../store/store";
-import EmptyCollection from "../Empty/EmptyCollection/EmptyCollection";
 import { SneakerCollectionTypes } from "../../views/SneakerCollection/SneakerCollection.types";
 import EmptySearchForm from "../Empty/EmptySearchForm/EmptySearchForm";
+import EmptyCollection from "../Empty/EmptyCollection/EmptyCollection";
 
 const Collection: React.FC<SneakerCollectionTypes> = ({ onDeleteSneaker }) => {
   const searchValue = state$.UI.searchValue;
   const sneakers = searchValue
     ? [...state$.searchSneakers.get()]
     : [...state$.sneakers.get()];
-  const activeSort = state$.UI.activeSort.get();
 
-  useEffect(() => {
-    const sortedSneakers: Sneaker[] = [...state$.sneakers.get()];
-    if (activeSort === "year") {
-      sortedSneakers.sort((a, b) => a.year - b.year);
-    }
-    if (activeSort === "size") {
-      sortedSneakers.sort((a, b) => a.size - b.size);
-    }
-    if (activeSort === "price") {
-      sortedSneakers.sort((a, b) => a.price - b.price);
-    }
-    state$.sneakers.set(sortedSneakers);
-  }, [activeSort, sneakers]);
-
-  if (state$.searchSneakers.length === 0) {
+  if (state$.searchSneakers.get().length === 0 && searchValue.get() !== "") {
     return <EmptySearchForm />;
   }
 
-  if (sneakers.length === 0) {
+  if (
+    state$.sneakers.get().length === 0 &&
+    (searchValue.get() === "" || searchValue.get() === undefined)
+  ) {
     return <EmptyCollection />;
   }
 
@@ -44,7 +32,7 @@ const Collection: React.FC<SneakerCollectionTypes> = ({ onDeleteSneaker }) => {
 
   return (
     <>
-      <SortPanel sortBy={activeSort} />
+      <SortPanel />
       <CardsContainer>
         {sneakers.map((sneaker) => (
           <div key={sneaker._id} onClick={() => handleCardOnClick(sneaker)}>

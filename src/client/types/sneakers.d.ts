@@ -11,4 +11,3 @@ export type Sneaker = {
 } & SneakerCollectionTypes;
 
 export type SneakerInput = Omit<Sneaker, "_id" | "onDeleteSneaker">;
-export type SneakerSort = Omit<SneakerInput, "name" | "brand" | "rate">;
