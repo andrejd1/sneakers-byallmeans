@@ -64,7 +64,7 @@ const SearchForm: React.FC = () => {
     } else {
       state$.sneakers.set(sortedSneakers);
     }
-  }, [activeSort, sneakers]);
+  }, [activeSort]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     searchValue.set(e.target.value);

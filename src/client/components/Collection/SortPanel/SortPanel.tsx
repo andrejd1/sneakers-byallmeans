@@ -27,11 +27,7 @@ const SortPanel: React.FC = () => {
           isSortedByYearUp || isSortedByYearDown ? "primary" : "secondary"
         }
         size={"small"}
-        label={
-          activeSort.get() === SneakerSort.yearUp
-            ? "Oldest Year"
-            : "Newest Year"
-        }
+        label={!isSortedByYearDown ? "Oldest Year" : "Newest Year"}
         icon={{
           name: "calendar",
           color: isSortedByYearUp || isSortedByYearDown ? "White" : "Black",
@@ -48,11 +44,7 @@ const SortPanel: React.FC = () => {
           isSortedBySizeUp || isSortedBySizeDown ? "primary" : "secondary"
         }
         size={"small"}
-        label={
-          activeSort.get() === SneakerSort.sizeUp
-            ? "Smallest Size"
-            : "Largest Size"
-        }
+        label={!isSortedBySizeDown ? "Smallest Size" : "Largest Size"}
         icon={{
           name: "size",
           color: isSortedBySizeUp || isSortedBySizeDown ? "White" : "Black",
@@ -69,11 +61,7 @@ const SortPanel: React.FC = () => {
           isSortedByPriceUp || isSortedByPriceDown ? "primary" : "secondary"
         }
         size={"small"}
-        label={
-          activeSort.get() === SneakerSort.priceUp
-            ? "Lowest Price"
-            : "Highest Price"
-        }
+        label={!isSortedByPriceDown ? "Lowest Price" : "Highest Price"}
         icon={{
           name: "dollar-sign",
           color: isSortedByPriceUp || isSortedByPriceDown ? "White" : "Black",

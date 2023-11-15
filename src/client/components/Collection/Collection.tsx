@@ -10,7 +10,7 @@ import EmptyCollection from "../Empty/EmptyCollection/EmptyCollection";
 
 const Collection: React.FC<SneakerCollectionTypes> = ({ onDeleteSneaker }) => {
   const searchValue = state$.UI.searchValue;
-  const sneakers = searchValue
+  const sneakers = searchValue.get()
     ? [...state$.searchSneakers.get()]
     : [...state$.sneakers.get()];
 

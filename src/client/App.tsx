@@ -82,7 +82,7 @@ const App: React.FC = () => {
   return (
     <Container>
       {isSneakerFormVisible && (
-        <Suspense fallback={<Loader />}>
+        <Suspense fallback={null}>
           <LazySneakerForm
             onCreateSneaker={handleCreateSneaker}
             onUpdateSneaker={handleUpdateSneaker}
