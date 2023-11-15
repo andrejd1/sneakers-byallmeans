@@ -8,6 +8,12 @@ export const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   flex-direction: column;
+
+  > h2 {
+    margin: 5.25rem 0 0;
+    place-self: start;
+  }
+
   @media only screen and ${device.laptop} {
     flex-direction: row;
     justify-content: space-between;

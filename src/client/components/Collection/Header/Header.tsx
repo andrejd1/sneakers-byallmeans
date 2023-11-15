@@ -10,6 +10,8 @@ import { useDeviceSize } from "../../../hooks/useDeviceSize";
 import { breakpointSize } from "../../../ui/theme/breakpoints";
 import SearchForm from "../../SearchForm/SearchForm";
 import { state$ } from "../../../store/store";
+import DropdownButton from "../SortPanel/Mobile/DropdownButton/DropdownButton";
+import MobileSortPanel from "../SortPanel/Mobile/MobileSortPanel";
 
 const CollectionHeader: React.FC = () => {
   const { windowWidth } = useDeviceSize();
@@ -18,6 +20,8 @@ const CollectionHeader: React.FC = () => {
   return (
     <StyledHeader>
       <Typography variant={isTablet ? "h2" : "h1"}>Your collection</Typography>
+      {isTablet && <DropdownButton />}
+      {isTablet && <MobileSortPanel />}
       <StyledHeaderButtonsContainer>
         <SearchForm />
         <StyledAddNewSneakersButtonContainer>

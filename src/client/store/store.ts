@@ -8,6 +8,7 @@ export const state$ = observable({
     isSneakerFormVisible: false as boolean,
     activeSneaker: null as Sneaker | null,
     searchValue: "" as string,
+    isDropdownButtonOpen: false as boolean,
   },
   searchSneakers: [] as Sneaker[],
   sneakers: [] as Sneaker[],
