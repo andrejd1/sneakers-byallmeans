@@ -40,7 +40,6 @@ const SearchForm: React.FC = () => {
       <Icon name="search" color="Gray80" />
       <StyledSearchFormInput
         disabled={isLoading}
-        $hasResults={searchSneakers.get().length > 0}
         type="text"
         className="form-control"
         placeholder="Search"

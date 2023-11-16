@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import { colors } from "../../ui/theme/colors";
 import { device } from "../../ui/theme/breakpoints";
-import { StyledSearchFormInputProps } from "./SearchForm.types";
 import { motion } from "framer-motion";
 
 export const StyledSearchForm = styled(motion.form)`
   display: flex;
   align-items: center;
   border: 1px solid ${colors.Gray80};
+  max-height: 1.375rem;
   background-color: ${colors.White};
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
@@ -18,12 +18,10 @@ export const StyledSearchForm = styled(motion.form)`
   }
 `;
 
-export const StyledSearchFormInput = styled.input<StyledSearchFormInputProps>`
+export const StyledSearchFormInput = styled.input`
   height: 100%;
   width: 100%;
-  font-family: ${(props) =>
-      props.$hasResults ? "Excon Medium" : "Excon Regular"},
-    sans-serif;
+  font-family: "Excon Regular", sans-serif;
   font-size: 1rem;
   background-color: ${colors.White};
   border: none;
