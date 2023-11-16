@@ -28,7 +28,7 @@ export const StyledSortPanel = styled.div<StyledSortPanelProps>`
 
   @media only screen and ${device.tablet} {
     justify-content: space-between;
-    margin: 1rem 0;
+    margin: 2rem 0 1rem;
 
     ${StyledButton} {
       &:last-child {

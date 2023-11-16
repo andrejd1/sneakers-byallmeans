@@ -29,11 +29,13 @@ const SneakerForm: React.FC<SneakerFormTypes.SneakerFormProps> = ({
     reset,
     formState: { errors, dirtyFields },
     setValue,
+    watch,
   } = useForm<SneakerInput>({ mode: "onChange" });
 
   const sneaker = state$.UI.activeSneaker.get();
   const isSneakerFormVisible = state$.UI.isSneakerFormVisible.get();
   const scrollPosition = useScrollPosition();
+  const watchRate = watch("rate");
 
   const onSubmit: SubmitHandler<SneakerInput> = (data) => {
     if (sneaker !== null) {
@@ -150,7 +152,10 @@ const SneakerForm: React.FC<SneakerFormTypes.SneakerFormProps> = ({
                 variant="primary"
                 size="large"
                 label="Save"
-                disabled={Object.keys(dirtyFields).length === 0}
+                disabled={
+                  Object.keys(dirtyFields).length === 0 &&
+                  sneaker.rate === watchRate
+                }
                 isActive={false}
               />
               <Button

@@ -9,6 +9,7 @@ export const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin-top: 4.5rem;
 
   > h2 {
     margin: 5.25rem 0 0;
@@ -18,6 +19,7 @@ export const StyledHeader = styled.header`
   @media only screen and ${device.laptop} {
     flex-direction: row;
     justify-content: space-between;
+    margin-top: 2.5rem;
   }
 `;
 export const StyledHeaderButtonsContainer = styled.div`

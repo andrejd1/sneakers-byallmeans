@@ -26,7 +26,7 @@ export const StyledSearchFormInput = styled.input<StyledSearchFormInputProps>`
   font-size: 1rem;
   background-color: ${colors.White};
   border: none;
-  margin-left: 0.2rem;
+  margin-left: 0.5rem;
 
   &:focus {
     outline: none;

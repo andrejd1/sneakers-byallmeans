@@ -20,7 +20,9 @@ const CollectionHeader: React.FC = () => {
 
   return (
     <StyledHeader>
-      <Typography variant={isTablet ? "h2" : "h1"}>Your collection</Typography>
+      <Typography variant={isTablet ? "h2" : "h1"} style={{ margin: 0 }}>
+        Your collection
+      </Typography>
       {isTablet && <DropdownButton />}
       {isTablet && <MobileSortPanel />}
       <StyledHeaderButtonsContainer>
