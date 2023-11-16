@@ -43,7 +43,7 @@ export const StyledMobileSortPanel = styled(StyledSortPanel)`
 `;
 
 export const StyledSearchResultWrapper = styled.div<StyledSearchResultWrapperProps>`
-  margin-top: ${(props) => (props.$hasSearchResults ? "1rem" : "0")};
+  margin-top: ${(props) => (props.$hasSearchValue ? "1rem" : "0")};
   @media only screen and ${device.tablet} {
     margin: 0;
   }

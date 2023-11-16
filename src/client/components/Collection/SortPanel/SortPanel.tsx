@@ -15,7 +15,7 @@ const SortPanel: React.FC = () => {
   const { windowWidth } = useDeviceSize();
   const isTablet = windowWidth <= breakpointSize.tablet;
   const searchValue = state$.UI.searchValue.get();
-  const hasSearchResults = state$.searchSneakers.get().length > 0;
+  const searchResultsLength = state$.searchSneakers.get().length;
 
   const activeSort = state$.UI.activeSort;
   const isSortedByYearUp = activeSort.get() === SneakerSort.yearUp;
@@ -27,12 +27,12 @@ const SortPanel: React.FC = () => {
 
   return (
     <StyledSortPanel $isVisible={true}>
-      <StyledSearchResultWrapper $hasSearchResults={hasSearchResults}>
+      <StyledSearchResultWrapper $hasSearchValue={searchValue.length > 0}>
         {searchValue.length > 0 && (
           <>
             <Typography variant="label">Search results for</Typography>
             <Typography variant="h3" style={{ margin: 0 }}>
-              {searchValue} {` (${state$.searchSneakers.length})`}
+              {searchValue} {` (${searchResultsLength})`}
             </Typography>
           </>
         )}
