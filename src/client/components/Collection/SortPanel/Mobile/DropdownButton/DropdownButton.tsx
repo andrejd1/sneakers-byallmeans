@@ -2,9 +2,11 @@ import React from "react";
 import Button from "../../../../Button/Button";
 import { state$ } from "../../../../../store/store";
 import { StyledDropdownButtonWrapper } from "./DropdownButton.styled";
+import { useSneakerContext } from "../../../../../context/SneakerProvider";
 
 const DropdownButton: React.FC = () => {
   const isDropdownOpen = state$.UI.isDropdownButtonOpen;
+  const { isLoading } = useSneakerContext();
 
   return (
     <StyledDropdownButtonWrapper $isVisible={isDropdownOpen.get()}>
@@ -15,9 +17,10 @@ const DropdownButton: React.FC = () => {
         isActive={false}
         icon={{
           name: "chevron-down",
-          color: "Black",
+          color: isLoading ? "Gray50" : "Black",
           align: "right",
         }}
+        disabled={isLoading}
         onClick={() => isDropdownOpen.set(true)}
       />
     </StyledDropdownButtonWrapper>

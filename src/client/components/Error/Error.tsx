@@ -6,8 +6,8 @@ import Container from "../Container/Container";
 const Error = ({ title, message }: ErrorProps) => {
   return (
     <Container>
-      <Typography variant={"h1"}>{title}</Typography>
-      <Typography variant={"h3"}>{message}</Typography>
+      <Typography variant={"h3"}>{title}</Typography>
+      <Typography variant={"subhead"}>{message}</Typography>
     </Container>
   );
 };

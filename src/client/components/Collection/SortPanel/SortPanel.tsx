@@ -3,6 +3,7 @@ import Typography from "../../Typography/Typography";
 import Button from "../../Button/Button";
 import {
   StyledSearchResultWrapper,
+  StyledSortButton,
   StyledSortPanel,
   StyledSortPanelButtonsWrapper,
 } from "./SortPanel.styled";
@@ -41,62 +42,74 @@ const SortPanel: React.FC = () => {
         {!isTablet && (
           <>
             <Typography variant="label">Sort by:</Typography>
-            <Button
-              variant={
-                isSortedByYearUp || isSortedByYearDown ? "primary" : "secondary"
-              }
-              size={"small"}
-              label={!isSortedByYearDown ? "Oldest Year" : "Newest Year"}
-              icon={{
-                name: "calendar",
-                color:
-                  isSortedByYearUp || isSortedByYearDown ? "White" : "Black",
-              }}
-              onClick={() =>
-                activeSort.get() === SneakerSort.yearUp
-                  ? activeSort.set(SneakerSort.yearDown)
-                  : activeSort.set(SneakerSort.yearUp)
-              }
-              isActive={isSortedByYearUp || isSortedByYearDown}
-            />
-            <Button
-              variant={
-                isSortedBySizeUp || isSortedBySizeDown ? "primary" : "secondary"
-              }
-              size={"small"}
-              label={!isSortedBySizeDown ? "Smallest Size" : "Largest Size"}
-              icon={{
-                name: "size",
-                color:
-                  isSortedBySizeUp || isSortedBySizeDown ? "White" : "Black",
-              }}
-              onClick={() =>
-                activeSort.get() === SneakerSort.sizeUp
-                  ? activeSort.set(SneakerSort.sizeDown)
-                  : activeSort.set(SneakerSort.sizeUp)
-              }
-              isActive={isSortedBySizeUp || isSortedBySizeDown}
-            />
-            <Button
-              variant={
-                isSortedByPriceUp || isSortedByPriceDown
-                  ? "primary"
-                  : "secondary"
-              }
-              size={"small"}
-              label={!isSortedByPriceDown ? "Lowest Price" : "Highest Price"}
-              icon={{
-                name: "dollar-sign",
-                color:
-                  isSortedByPriceUp || isSortedByPriceDown ? "White" : "Black",
-              }}
-              onClick={() =>
-                activeSort.get() === SneakerSort.priceUp
-                  ? activeSort.set(SneakerSort.priceDown)
-                  : activeSort.set(SneakerSort.priceUp)
-              }
-              isActive={isSortedByPriceUp || isSortedByPriceDown}
-            />
+            <StyledSortButton whileTap={{ scale: 0.9 }}>
+              <Button
+                variant={
+                  isSortedByYearUp || isSortedByYearDown
+                    ? "primary"
+                    : "secondary"
+                }
+                size={"small"}
+                label={!isSortedByYearDown ? "Oldest Year" : "Newest Year"}
+                icon={{
+                  name: "calendar",
+                  color:
+                    isSortedByYearUp || isSortedByYearDown ? "White" : "Black",
+                }}
+                onClick={() =>
+                  activeSort.get() === SneakerSort.yearUp
+                    ? activeSort.set(SneakerSort.yearDown)
+                    : activeSort.set(SneakerSort.yearUp)
+                }
+                isActive={isSortedByYearUp || isSortedByYearDown}
+              />
+            </StyledSortButton>
+            <StyledSortButton whileTap={{ scale: 0.9 }}>
+              <Button
+                variant={
+                  isSortedBySizeUp || isSortedBySizeDown
+                    ? "primary"
+                    : "secondary"
+                }
+                size={"small"}
+                label={!isSortedBySizeDown ? "Smallest Size" : "Largest Size"}
+                icon={{
+                  name: "size",
+                  color:
+                    isSortedBySizeUp || isSortedBySizeDown ? "White" : "Black",
+                }}
+                onClick={() =>
+                  activeSort.get() === SneakerSort.sizeUp
+                    ? activeSort.set(SneakerSort.sizeDown)
+                    : activeSort.set(SneakerSort.sizeUp)
+                }
+                isActive={isSortedBySizeUp || isSortedBySizeDown}
+              />
+            </StyledSortButton>
+            <StyledSortButton whileTap={{ scale: 0.9 }}>
+              <Button
+                variant={
+                  isSortedByPriceUp || isSortedByPriceDown
+                    ? "primary"
+                    : "secondary"
+                }
+                size={"small"}
+                label={!isSortedByPriceDown ? "Lowest Price" : "Highest Price"}
+                icon={{
+                  name: "dollar-sign",
+                  color:
+                    isSortedByPriceUp || isSortedByPriceDown
+                      ? "White"
+                      : "Black",
+                }}
+                onClick={() =>
+                  activeSort.get() === SneakerSort.priceUp
+                    ? activeSort.set(SneakerSort.priceDown)
+                    : activeSort.set(SneakerSort.priceUp)
+                }
+                isActive={isSortedByPriceUp || isSortedByPriceDown}
+              />
+            </StyledSortButton>
           </>
         )}
       </StyledSortPanelButtonsWrapper>

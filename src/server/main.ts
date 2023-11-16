@@ -1,6 +1,7 @@
 import express from "express";
 import ViteExpress from "vite-express";
 import axios from "axios";
+// import { seedData } from "./seed";
 
 const app = express();
 ViteExpress.config({
@@ -34,7 +35,7 @@ app.get("/sneakers", async (_, res) => {
   }
 });
 
-// mock
+// mock seed data
 // app.get("/sneakers", async (_, res) => {
 //   try {
 //     res.json(seedData);

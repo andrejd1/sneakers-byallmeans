@@ -3,11 +3,13 @@ import { StyledSearchForm, StyledSearchFormInput } from "./SearchForm.styled";
 import Icon from "../Icon/Icon";
 import { state$ } from "../../store/store";
 import { colors } from "../../ui/theme/colors";
+import { useSneakerContext } from "../../context/SneakerProvider";
 
 const SearchForm: React.FC = () => {
   const sneakers = state$.sneakers;
   const searchValue = state$.UI.searchValue;
   const searchSneakers = state$.searchSneakers;
+  const { isLoading } = useSneakerContext();
 
   useEffect(() => {
     if (searchValue.get() !== "") {
@@ -37,6 +39,7 @@ const SearchForm: React.FC = () => {
     >
       <Icon name="search" color="Gray80" />
       <StyledSearchFormInput
+        disabled={isLoading}
         $hasResults={searchSneakers.get().length > 0}
         type="text"
         className="form-control"

@@ -6,6 +6,7 @@ import {
   StyledSearchResultWrapperProps,
   StyledSortPanelProps,
 } from "./SortPanel.types";
+import { motion } from "framer-motion";
 
 export const StyledSortPanel = styled.div<StyledSortPanelProps>`
   display: ${(props) => (props.$isVisible ? "flex" : "none")};
@@ -40,6 +41,20 @@ export const StyledSortPanel = styled.div<StyledSortPanelProps>`
 
 export const StyledMobileSortPanel = styled(StyledSortPanel)`
   margin: 1rem 0;
+`;
+
+export const StyledSortButton = styled(motion.div)`
+  margin-right: 0.5rem;
+
+  &:last-child {
+    margin-right: 1.375rem;
+  }
+
+  @media only screen and ${device.tablet} {
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 `;
 
 export const StyledSearchResultWrapper = styled.div<StyledSearchResultWrapperProps>`
