@@ -9,7 +9,6 @@ import {
 import { SneakerInput } from "./types/sneakers";
 import SneakerCollection from "./views/SneakerCollection/SneakerCollection";
 import Container from "./components/Container/Container";
-import { enableReactTracking } from "@legendapp/state/config/enableReactTracking";
 import { state$ } from "./store/store";
 import Error from "./components/Error/Error";
 import Loader from "./components/Loader/Loader";
@@ -28,6 +27,8 @@ const App: React.FC = () => {
     refetch,
   } = useQuery("sneakers", fetchSneakers);
   const isSneakerFormVisible = state$.UI.isSneakerFormVisible.get();
+
+  // enableReactTracking({ auto: true });
 
   useEffect(() => {
     if (sneakers !== undefined && sneakers.length > 0) {
@@ -65,9 +66,9 @@ const App: React.FC = () => {
     refetch();
   };
 
-  enableReactTracking({
-    auto: true,
-  });
+  // enableReactTracking({
+  //   auto: true,
+  // });
 
   if (error)
     return (

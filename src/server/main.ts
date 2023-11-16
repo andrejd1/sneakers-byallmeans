@@ -6,17 +6,15 @@ import axios from "axios";
 const app = express();
 ViteExpress.config({
   mode:
-    process.env.VITE_VERCEL_ENV === "production"
-      ? process.env.VITE_VERCEL_ENV
-      : "development",
+    process.env.VITE_VERCEL_ENV === "production" ? "production" : "development",
 });
+console.log(process.env.VITE_VERCEL_ENV);
 app.use(express.json()); // Add this line to parse JSON data
 const PORT = 3000;
 const apiUrl = "https://crudcrud.com/api/0e0e20d7533b4fdd9222229be5975adb";
 
 // POST method to create a new sneaker
 app.post("/sneakers", async (req, res) => {
-  console.log(req.body);
   try {
     const response = await axios.post(`${apiUrl}/sneakers`, req.body);
     res.json(response.data);

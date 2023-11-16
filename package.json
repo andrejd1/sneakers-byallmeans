@@ -4,7 +4,6 @@
   "version": "0.0.1",
   "author": "Thien Long Ngo",
   "license": "MIT",
-  "homepage": ".",
   "scripts": {
     "dev": "nodemon src/server/main.ts -w src/server",
     "start": "NODE_ENV=production ts-node src/server/main.ts",

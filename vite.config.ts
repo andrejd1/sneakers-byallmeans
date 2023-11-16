@@ -5,8 +5,8 @@ import react from "@vitejs/plugin-react";
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
   return {
-    base: "/sneakers-byallmeans/",
     define: {
+      __APP_ENV__: process.env.VITE_VERCEL_ENV,
       "process.env": env,
     },
     plugins: [react()],
