@@ -2,8 +2,9 @@ import styled from "styled-components";
 import { StyledButton } from "../../Button/Button.styled";
 import { device } from "../../../ui/theme/breakpoints";
 import { StyledIcon } from "../../Icon/Icon.styled";
+import { StyledSortPanelProps } from "./SortPanel.types";
 
-export const StyledSortPanel = styled.div<{ $isVisible: boolean }>`
+export const StyledSortPanel = styled.div<StyledSortPanelProps>`
   display: ${(props) => (props.$isVisible ? "flex" : "none")};
   flex-direction: row;
   align-self: start;
@@ -39,7 +40,7 @@ export const StyledMobileSortPanel = styled(StyledSortPanel)`
 `;
 
 export const StyledSearchResultWrapper = styled.div`
-  margin: 1rem 0;
+  margin-top: 1rem;
   @media only screen and ${device.tablet} {
     margin: 0;
   }

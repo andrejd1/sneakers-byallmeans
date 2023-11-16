@@ -10,6 +10,7 @@ import { SneakerSort } from "../../../../enums/sneakers";
 const MobileSortPanel: React.FC = () => {
   const activeSort = state$.UI.activeSort;
   const isDropdownOpen = state$.UI.isDropdownButtonOpen;
+
   const isSortedByYearDown = activeSort.get() === SneakerSort.yearDown;
   const isSortedByYearUp = activeSort.get() === SneakerSort.yearUp;
   const isSortedBySizeDown = activeSort.get() === SneakerSort.sizeDown;
