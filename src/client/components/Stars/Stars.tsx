@@ -2,6 +2,7 @@ import React from "react";
 import { StyledStarsContainer } from "./Stars.styled";
 import Icon from "../Icon/Icon";
 import { StarsTypes } from "./Stars.types";
+import { motion } from "framer-motion";
 
 const Stars: React.FC<StarsTypes.StarsProps> = ({
   rating,
@@ -21,7 +22,9 @@ const Stars: React.FC<StarsTypes.StarsProps> = ({
     <StyledStarsContainer $variant={variant}>
       {[...Array(5)].map((_, i) => {
         return (
-          <div
+          <motion.div
+            whileHover={!isReadonly ? { scale: 1.2 } : { scale: 1 }}
+            whileTap={!isReadonly ? { scale: 0.9 } : { scale: 1 }}
             key={i}
             onClick={() => handleRateChange(i)}
             onMouseEnter={() => !isReadonly && setHover(i + 1)}
@@ -36,7 +39,7 @@ const Stars: React.FC<StarsTypes.StarsProps> = ({
                 name={variant === "large" ? "star-empty" : "star-empty-small"}
               />
             )}
-          </div>
+          </motion.div>
         );
       })}
     </StyledStarsContainer>

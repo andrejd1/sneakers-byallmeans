@@ -4,6 +4,7 @@ import { StyledButton } from "../../Button/Button.styled";
 import { colors } from "../../../ui/theme/colors";
 import { zIndexes } from "../../../ui/theme/zIndexes";
 import { StyledAddNewSneakersButtonContainerProps } from "./Header.types";
+import { motion } from "framer-motion";
 
 export const StyledHeader = styled.header`
   display: flex;
@@ -36,7 +37,9 @@ export const StyledHeaderButtonsContainer = styled.div`
   }
 `;
 
-export const StyledAddNewSneakersButtonContainer = styled.div<StyledAddNewSneakersButtonContainerProps>`
+export const StyledAddNewSneakersButtonContainer = styled(
+  motion.div,
+)<StyledAddNewSneakersButtonContainerProps>`
   position: fixed;
   bottom: 0;
   width: 100%;

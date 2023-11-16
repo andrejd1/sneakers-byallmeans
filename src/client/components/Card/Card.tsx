@@ -9,6 +9,7 @@ import Typography from "../Typography/Typography";
 import Icon from "../Icon/Icon";
 import { Sneaker } from "../../types/sneakers";
 import Stars from "../Stars/Stars";
+import { motion } from "framer-motion";
 
 const Card: React.FC<Sneaker> = ({
   _id,
@@ -26,7 +27,9 @@ const Card: React.FC<Sneaker> = ({
         <Typography variant={"h3"} style={{ margin: 0 }}>
           {name}
         </Typography>
-        <div
+        <motion.div
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.9 }}
           onClick={(event) => {
             event.stopPropagation();
             if (
@@ -39,7 +42,7 @@ const Card: React.FC<Sneaker> = ({
           }}
         >
           <Icon name="trash" />
-        </div>
+        </motion.div>
       </StyledCardTitle>
       <Typography variant={"copy"}>{brand}</Typography>
       <Stars rating={rate} variant="small" isReadonly={true} />

@@ -53,7 +53,7 @@ export const StyledFormTitleContainer = styled.div`
   }
 `;
 
-export const StyledFormCloseWrapper = styled.div``;
+export const StyledFormCloseWrapper = styled(motion.div)``;
 
 export const StyledFormButtonsContainer = styled.div`
   display: flex;

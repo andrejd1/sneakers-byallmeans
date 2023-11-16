@@ -30,6 +30,7 @@ This project is a React web application for managing a collection of sneakers. I
 - [styled-components](https://styled-components.com/): CSS-in-JS library for styling components.
 - [react-query](https://react-query.tanstack.com/): Hooks for fetching, caching, and updating asynchronous data.
 - [axios](https://axios-http.com/): Promise-based HTTP client.
+- [framer-motion](https://www.framer.com/motion/): A production-ready motion library for React.
 
 ## Getting Started
 

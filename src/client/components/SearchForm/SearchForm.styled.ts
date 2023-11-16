@@ -2,8 +2,9 @@ import styled from "styled-components";
 import { colors } from "../../ui/theme/colors";
 import { device } from "../../ui/theme/breakpoints";
 import { StyledSearchFormInputProps } from "./SearchForm.types";
+import { motion } from "framer-motion";
 
-export const StyledSearchForm = styled.form`
+export const StyledSearchForm = styled(motion.form)`
   display: flex;
   align-items: center;
   border: 1px solid ${colors.Gray80};

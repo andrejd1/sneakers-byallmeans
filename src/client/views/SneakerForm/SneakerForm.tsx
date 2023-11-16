@@ -88,6 +88,8 @@ const SneakerForm: React.FC<SneakerFormTypes.SneakerFormProps> = ({
             {sneaker?.name ?? `Add sneakers\nto your collection`}
           </Typography>
           <StyledFormCloseWrapper
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.9 }}
             onClick={() => {
               state$.UI.activeSneaker.set(null);
               state$.UI.isSneakerFormVisible.set(false);

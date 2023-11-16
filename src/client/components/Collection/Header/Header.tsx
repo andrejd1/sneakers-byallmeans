@@ -28,6 +28,8 @@ const CollectionHeader: React.FC = () => {
       <StyledHeaderButtonsContainer>
         <SearchForm />
         <StyledAddNewSneakersButtonContainer
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
           $hasResults={searchSneakers.length > 0}
         >
           <Button

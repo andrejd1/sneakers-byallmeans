@@ -104,10 +104,6 @@ const App: React.FC = () => {
     refetch();
   };
 
-  // enableReactTracking({
-  //   auto: true,
-  // });
-
   if (error)
     return (
       <Error

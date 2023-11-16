@@ -2,6 +2,7 @@ import React, { ChangeEvent, useEffect } from "react";
 import { StyledSearchForm, StyledSearchFormInput } from "./SearchForm.styled";
 import Icon from "../Icon/Icon";
 import { state$ } from "../../store/store";
+import { colors } from "../../ui/theme/colors";
 
 const SearchForm: React.FC = () => {
   const sneakers = state$.sneakers;
@@ -30,7 +31,10 @@ const SearchForm: React.FC = () => {
   };
 
   return (
-    <StyledSearchForm>
+    <StyledSearchForm
+      whileHover={{ border: `1px solid ${colors.Hover}` }}
+      whileTap={{ scale: 0.9 }}
+    >
       <Icon name="search" color="Gray80" />
       <StyledSearchFormInput
         $hasResults={searchSneakers.get().length > 0}
