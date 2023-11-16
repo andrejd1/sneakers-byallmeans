@@ -16,6 +16,7 @@ import MobileSortPanel from "../SortPanel/Mobile/MobileSortPanel";
 const CollectionHeader: React.FC = () => {
   const { windowWidth } = useDeviceSize();
   const isTablet = windowWidth <= breakpointSize.tablet;
+  const searchSneakers = state$.searchSneakers.get();
 
   return (
     <StyledHeader>
@@ -24,7 +25,9 @@ const CollectionHeader: React.FC = () => {
       {isTablet && <MobileSortPanel />}
       <StyledHeaderButtonsContainer>
         <SearchForm />
-        <StyledAddNewSneakersButtonContainer>
+        <StyledAddNewSneakersButtonContainer
+          $hasResults={searchSneakers.length > 0}
+        >
           <Button
             variant={"primary"}
             size={"large"}

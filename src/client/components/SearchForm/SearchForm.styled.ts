@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { colors } from "../../ui/theme/colors";
 import { device } from "../../ui/theme/breakpoints";
+import { StyledSearchFormInputProps } from "./SearchForm.types";
 
 export const StyledSearchForm = styled.form`
   display: flex;
@@ -16,9 +17,12 @@ export const StyledSearchForm = styled.form`
   }
 `;
 
-export const StyledSearchFormInput = styled.input`
+export const StyledSearchFormInput = styled.input<StyledSearchFormInputProps>`
   height: 100%;
   width: 100%;
+  font-family: ${(props) =>
+      props.$hasResults ? "Excon Medium" : "Excon Regular"},
+    sans-serif;
   background-color: ${colors.White};
   border: none;
   margin-left: 0.2rem;

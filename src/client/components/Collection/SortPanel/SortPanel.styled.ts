@@ -19,13 +19,12 @@ export const StyledSortPanel = styled.div<{ $isVisible: boolean }>`
     }
 
     &:last-child {
-      margin-right: 0;
+      margin-right: 1.375rem;
     }
   }
 
   @media only screen and ${device.tablet} {
     justify-content: space-between;
-    place-content: end;
     margin: 1rem 0 0 0;
   }
 `;

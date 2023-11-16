@@ -1,5 +1,4 @@
-import { Sneaker } from "../../../types/sneakers";
+import { StyledSearchFormInputProps } from "../../SearchForm/SearchForm.types";
 
-export type HeaderProps = {
-  sneakers: Sneaker[];
-};
+export type StyledAddNewSneakersButtonContainerProps =
+  StyledSearchFormInputProps;

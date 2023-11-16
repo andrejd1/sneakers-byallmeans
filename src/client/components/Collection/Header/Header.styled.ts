@@ -1,8 +1,9 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { device } from "../../../ui/theme/breakpoints";
 import { StyledButton } from "../../Button/Button.styled";
 import { colors } from "../../../ui/theme/colors";
 import { zIndexes } from "../../../ui/theme/zIndexes";
+import { StyledAddNewSneakersButtonContainerProps } from "./Header.types";
 
 export const StyledHeader = styled.header`
   display: flex;
@@ -33,12 +34,20 @@ export const StyledHeaderButtonsContainer = styled.div`
   }
 `;
 
-export const StyledAddNewSneakersButtonContainer = styled.div`
+export const StyledAddNewSneakersButtonContainer = styled.div<StyledAddNewSneakersButtonContainerProps>`
   position: fixed;
   bottom: 0;
   width: 100%;
   background-color: ${colors.White};
   border-top: 1px solid ${colors.Gray100};
+
+  ${(props) =>
+    !props.$hasResults &&
+    css`
+      background-color: transparent;
+      border-top: none;
+    `};
+
   padding: 1rem 1.375rem 3.5rem;
   z-index: ${zIndexes.addNewSneakersButton};
 

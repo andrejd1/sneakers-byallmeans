@@ -25,14 +25,16 @@ const SortPanel: React.FC = () => {
 
   return (
     <StyledSortPanel $isVisible={true}>
-      {searchValue.length > 0 && (
-        <div>
-          <Typography variant="label">Search results for</Typography>
-          <Typography variant="h3" style={{ margin: 0 }}>
-            {searchValue} {` (${state$.searchSneakers.length})`}
-          </Typography>
-        </div>
-      )}
+      <div>
+        {searchValue.length > 0 && (
+          <>
+            <Typography variant="label">Search results for</Typography>
+            <Typography variant="h3" style={{ margin: 0 }}>
+              {searchValue} {` (${state$.searchSneakers.length})`}
+            </Typography>
+          </>
+        )}
+      </div>
       <StyledSortPanelButtonsWrapper>
         {!isTablet && (
           <>
