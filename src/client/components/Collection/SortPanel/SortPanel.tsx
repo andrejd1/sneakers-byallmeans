@@ -2,6 +2,7 @@ import React from "react";
 import Typography from "../../Typography/Typography";
 import Button from "../../Button/Button";
 import {
+  StyledSearchResultWrapper,
   StyledSortPanel,
   StyledSortPanelButtonsWrapper,
 } from "./SortPanel.styled";
@@ -24,8 +25,8 @@ const SortPanel: React.FC = () => {
   const isSortedByPriceDown = activeSort.get() === SneakerSort.priceDown;
 
   return (
-    <StyledSortPanel $isVisible={true}>
-      <div>
+    <StyledSortPanel $isVisible={!isTablet}>
+      <StyledSearchResultWrapper>
         {searchValue.length > 0 && (
           <>
             <Typography variant="label">Search results for</Typography>
@@ -34,7 +35,7 @@ const SortPanel: React.FC = () => {
             </Typography>
           </>
         )}
-      </div>
+      </StyledSearchResultWrapper>
       <StyledSortPanelButtonsWrapper>
         {!isTablet && (
           <>

@@ -23,6 +23,7 @@ export const StyledSearchFormInput = styled.input<StyledSearchFormInputProps>`
   font-family: ${(props) =>
       props.$hasResults ? "Excon Medium" : "Excon Regular"},
     sans-serif;
+  font-size: 1rem;
   background-color: ${colors.White};
   border: none;
   margin-left: 0.2rem;

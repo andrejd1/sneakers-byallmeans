@@ -4,6 +4,12 @@ import axios from "axios";
 // import { seedData } from "./seed";
 
 const app = express();
+ViteExpress.config({
+  mode:
+    process.env.VITE_VERCEL_ENV === "production"
+      ? process.env.VITE_VERCEL_ENV
+      : "development",
+});
 app.use(express.json()); // Add this line to parse JSON data
 const PORT = 3000;
 const apiUrl = "https://crudcrud.com/api/0e0e20d7533b4fdd9222229be5975adb";

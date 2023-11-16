@@ -5,10 +5,11 @@ export const CardsContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 1rem;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   margin-bottom: 8.5rem;
 
   @media only screen and ${device.tablet} {
+    margin-top: 0;
     grid-template-columns: 1fr 1fr;
   }
 

@@ -29,6 +29,14 @@ export const StyledSortPanel = styled.div<{ $isVisible: boolean }>`
   }
 `;
 
+export const StyledSearchResultWrapper = styled.div`
+  min-height: 0;
+
+  @media only screen and ${device.tablet} {
+    min-height: 3.75rem;
+  }
+`;
+
 export const StyledSortPanelButtonsWrapper = styled.div`
   display: flex;
   flex-direction: row;
