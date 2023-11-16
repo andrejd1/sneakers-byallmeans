@@ -10,6 +10,7 @@ import Icon from "../Icon/Icon";
 import { Sneaker } from "../../types/sneakers";
 import Stars from "../Stars/Stars";
 import { motion } from "framer-motion";
+import { useSneakerContext } from "../../context/SneakerProvider";
 
 const Card: React.FC<Sneaker> = ({
   _id,
@@ -19,8 +20,9 @@ const Card: React.FC<Sneaker> = ({
   size,
   year,
   rate,
-  onDeleteSneaker,
 }) => {
+  const { handleDeleteSneaker } = useSneakerContext();
+
   return (
     <StyledCard>
       <StyledCardTitle>
@@ -30,14 +32,14 @@ const Card: React.FC<Sneaker> = ({
         <motion.div
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.9 }}
-          onClick={(event) => {
+          onClick={async (event) => {
             event.stopPropagation();
             if (
               window.confirm(
                 `Are you sure you want to delete ${brand} ${name}?`,
               )
             ) {
-              onDeleteSneaker(_id);
+              await handleDeleteSneaker(_id);
             }
           }}
         >

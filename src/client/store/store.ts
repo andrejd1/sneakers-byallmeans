@@ -13,6 +13,7 @@ export const state$ = observable({
     searchValue: "" as string,
     isDropdownButtonOpen: false as boolean,
   },
+  actions: {},
   searchSneakers: [] as Sneaker[],
   sneakers: [] as Sneaker[],
 });

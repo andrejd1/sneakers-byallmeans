@@ -1,5 +1,3 @@
-import { SneakerCollectionTypes } from "../views/SneakerCollection/SneakerCollection.types";
-
 export type Sneaker = {
   _id: string;
   name: string;
@@ -8,6 +6,6 @@ export type Sneaker = {
   size: number;
   year: number;
   rate?: number;
-} & SneakerCollectionTypes;
+};
 
 export type SneakerInput = Omit<Sneaker, "_id" | "onDeleteSneaker">;

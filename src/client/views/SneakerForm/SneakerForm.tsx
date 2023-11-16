@@ -14,15 +14,11 @@ import { state$ } from "../../store/store";
 import Icon from "../../components/Icon/Icon";
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
-import { SneakerFormTypes } from "./SneakerForm.types";
 import Rate from "../../components/Rate/Rate";
 import useScrollPosition from "../../hooks/useScrollPosition";
+import { useSneakerContext } from "../../context/SneakerProvider";
 
-const SneakerForm: React.FC<SneakerFormTypes.SneakerFormProps> = ({
-  onCreateSneaker,
-  onUpdateSneaker,
-  onDeleteSneaker,
-}) => {
+const SneakerForm: React.FC = () => {
   const {
     register,
     handleSubmit,
@@ -32,18 +28,21 @@ const SneakerForm: React.FC<SneakerFormTypes.SneakerFormProps> = ({
     watch,
   } = useForm<SneakerInput>({ mode: "onChange" });
 
+  const { handleCreateSneaker, handleUpdateSneaker, handleDeleteSneaker } =
+    useSneakerContext();
+
   const sneaker = state$.UI.activeSneaker.get();
   const isSneakerFormVisible = state$.UI.isSneakerFormVisible.get();
   const scrollPosition = useScrollPosition();
   const watchRate = watch("rate");
 
-  const onSubmit: SubmitHandler<SneakerInput> = (data) => {
+  const onSubmit: SubmitHandler<SneakerInput> = async (data) => {
     if (sneaker !== null) {
-      if (onUpdateSneaker) {
-        onUpdateSneaker(sneaker._id, data);
+      if (handleUpdateSneaker) {
+        await handleUpdateSneaker(sneaker._id, data);
       }
     } else {
-      onCreateSneaker(data);
+      await handleCreateSneaker(data);
     }
     reset();
     state$.UI.activeSneaker.set(null);
@@ -165,15 +164,15 @@ const SneakerForm: React.FC<SneakerFormTypes.SneakerFormProps> = ({
                 size="large"
                 label="Delete"
                 isActive={true}
-                onClick={(event) => {
+                onClick={async (event) => {
                   event.preventDefault();
                   if (
-                    onDeleteSneaker &&
+                    handleDeleteSneaker &&
                     window.confirm(
                       `Are you sure you want to delete ${sneaker.brand} ${sneaker.name}?`,
                     )
                   ) {
-                    onDeleteSneaker(sneaker._id);
+                    await handleDeleteSneaker(sneaker._id);
                     state$.UI.isSneakerFormVisible.set(false);
                   }
                 }}

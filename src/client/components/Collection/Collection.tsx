@@ -4,10 +4,10 @@ import SortPanel from "./SortPanel/SortPanel";
 import Card from "../Card/Card";
 import { CardsContainer } from "./Collection.styled";
 import { state$ } from "../../store/store";
-import { SneakerCollectionTypes } from "../../views/SneakerCollection/SneakerCollection.types";
 import EmptySearchForm from "../Empty/EmptySearchForm/EmptySearchForm";
+import EmptyCollection from "../Empty/EmptyCollection/EmptyCollection";
 
-const Collection: React.FC<SneakerCollectionTypes> = ({ onDeleteSneaker }) => {
+const Collection: React.FC = () => {
   const searchValue = state$.UI.searchValue;
   const sneakers = searchValue.get()
     ? [...state$.searchSneakers.get()]
@@ -18,7 +18,11 @@ const Collection: React.FC<SneakerCollectionTypes> = ({ onDeleteSneaker }) => {
     state$.UI.isSneakerFormVisible.set(true);
   };
 
-  if (sneakers.length === 0) {
+  if (sneakers?.length === 0) {
+    return <EmptyCollection />;
+  }
+
+  if (sneakers.length === 0 && searchValue.get().length > 0) {
     return <EmptySearchForm />;
   }
 
@@ -36,7 +40,6 @@ const Collection: React.FC<SneakerCollectionTypes> = ({ onDeleteSneaker }) => {
               price={sneaker.price}
               brand={sneaker.brand}
               rate={sneaker.rate}
-              onDeleteSneaker={onDeleteSneaker}
             />
           </div>
         ))}

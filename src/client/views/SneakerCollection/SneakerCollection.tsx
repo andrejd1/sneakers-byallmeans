@@ -1,15 +1,12 @@
 import React from "react";
 import CollectionHeader from "../../components/Collection/Header/Header";
 import Collection from "../../components/Collection/Collection";
-import { SneakerCollectionTypes } from "./SneakerCollection.types";
 
-const SneakerCollection: React.FC<SneakerCollectionTypes> = ({
-  onDeleteSneaker,
-}) => {
+const SneakerCollection: React.FC = () => {
   return (
     <>
       <CollectionHeader />
-      <Collection onDeleteSneaker={onDeleteSneaker} />
+      <Collection />
     </>
   );
 };
