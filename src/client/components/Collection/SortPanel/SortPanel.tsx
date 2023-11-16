@@ -25,7 +25,7 @@ const SortPanel: React.FC = () => {
   const isSortedByPriceDown = activeSort.get() === SneakerSort.priceDown;
 
   return (
-    <StyledSortPanel $isVisible={!isTablet}>
+    <StyledSortPanel $isVisible={true}>
       <StyledSearchResultWrapper>
         {searchValue.length > 0 && (
           <>

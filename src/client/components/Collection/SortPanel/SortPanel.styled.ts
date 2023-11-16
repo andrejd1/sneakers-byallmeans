@@ -9,7 +9,6 @@ export const StyledSortPanel = styled.div<{ $isVisible: boolean }>`
   align-self: start;
   align-items: center;
   overflow: auto;
-  margin: 1rem 0;
 
   ${StyledButton} {
     margin-right: 0.5rem;
@@ -25,15 +24,24 @@ export const StyledSortPanel = styled.div<{ $isVisible: boolean }>`
 
   @media only screen and ${device.tablet} {
     justify-content: space-between;
-    margin: 1rem 0 0 0;
+    margin: 1rem 0;
+
+    ${StyledButton} {
+      &:last-child {
+        margin-right: 0;
+      }
+    }
   }
 `;
 
-export const StyledSearchResultWrapper = styled.div`
-  min-height: 0;
+export const StyledMobileSortPanel = styled(StyledSortPanel)`
+  margin: 1rem 0;
+`;
 
+export const StyledSearchResultWrapper = styled.div`
+  margin: 1rem 0;
   @media only screen and ${device.tablet} {
-    min-height: 3.75rem;
+    margin: 0;
   }
 `;
 
