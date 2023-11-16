@@ -1,7 +1,7 @@
 import express from "express";
 import ViteExpress from "vite-express";
 import axios from "axios";
-import { seedData } from "./seed";
+// import { seedData } from "./seed";
 
 const app = express();
 app.use(express.json()); // Add this line to parse JSON data
@@ -21,25 +21,25 @@ app.post("/sneakers", async (req, res) => {
 });
 
 // GET method to retrieve all sneakers
-// app.get("/sneakers", async (_, res) => {
-//   try {
-//     const response = await axios.get(`${apiUrl}/sneakers`);
-//     res.json(response.data);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).send("Internal Server Error");
-//   }
-// });
-
-// mock
 app.get("/sneakers", async (_, res) => {
   try {
-    res.json(seedData);
+    const response = await axios.get(`${apiUrl}/sneakers`);
+    res.json(response.data);
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
   }
 });
+
+// mock
+// app.get("/sneakers", async (_, res) => {
+//   try {
+//     res.json(seedData);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send("Internal Server Error");
+//   }
+// });
 
 // PUT method to update sneaker details
 app.put("/sneakers/:id", async (req, res) => {
