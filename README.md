@@ -1,4 +1,4 @@
-# Sneaker Collector App
+# Sneakers Collection App
 
 This project is a React web application for managing a collection of sneakers. It includes features such as adding, updating, and deleting sneakers, as well as sorting and searching functionalities.
 
