@@ -1,6 +1,9 @@
 import { observable } from "@legendapp/state";
 import { Sneaker } from "../types/sneakers";
 import { SneakerSort } from "../enums/sneakers";
+import { enableReactTracking } from "@legendapp/state/config/enableReactTracking";
+
+enableReactTracking({ auto: true });
 
 export const state$ = observable({
   UI: {
