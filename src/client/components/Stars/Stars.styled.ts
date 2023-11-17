@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import { device } from "../../ui/theme/breakpoints";
 import { StarsTypes } from "./Stars.types";
-import StyledStarsContainer = StarsTypes.StyledStarsContainer;
 
-export const StyledStarsContainer = styled.div<StyledStarsContainer>`
+export const StyledStarsContainer = styled.div<StarsTypes.StyledStarsContainerProps>`
   display: flex;
   flex-direction: row;
   align-items: center;

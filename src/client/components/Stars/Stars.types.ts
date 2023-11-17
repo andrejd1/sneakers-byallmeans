@@ -8,7 +8,7 @@ export namespace StarsTypes {
     isReadonly?: boolean;
   };
 
-  export type StyledStarsContainer = {
+  export type StyledStarsContainerProps = {
     $variant: StarsTypes.StarsVariants;
   };
 }
