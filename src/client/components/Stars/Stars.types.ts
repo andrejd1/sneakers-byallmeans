@@ -7,4 +7,8 @@ export namespace StarsTypes {
     setRating?: (rating: number) => void;
     isReadonly?: boolean;
   };
+
+  export type StyledStarsContainer = {
+    $variant: StarsTypes.StarsVariants;
+  };
 }
