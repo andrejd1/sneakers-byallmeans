@@ -5,11 +5,11 @@ import Card from "../Card/Card";
 import { CardsContainer } from "./Collection.styled";
 import { state$ } from "../../store/store";
 import EmptySearchForm from "../Empty/EmptySearchForm/EmptySearchForm";
-import EmptyCollection from "../Empty/EmptyCollection/EmptyCollection";
 import Error from "../Error/Error";
 import Loader from "../Loader/Loader";
 import { useSneakerContext } from "../../context/SneakerProvider";
 import { motion } from "framer-motion";
+import EmptyCollection from "../Empty/EmptyCollection/EmptyCollection";
 
 const LazySneakerForm = React.lazy(
   () => import("../../views/SneakerForm/SneakerForm"),
@@ -36,11 +36,11 @@ const Collection: React.FC = () => {
     return <Loader />;
   }
 
-  if (sneakers?.length === 0) {
+  if (sneakers?.length === 0 && searchValue.peek().length === 0) {
     return <EmptyCollection />;
   }
 
-  if (sneakers.length === 0 && searchValue.get().length > 0) {
+  if (sneakers.length === 0 && searchValue.peek().length > 0) {
     return <EmptySearchForm />;
   }
 
