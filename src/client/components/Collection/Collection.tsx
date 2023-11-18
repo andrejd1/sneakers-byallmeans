@@ -8,7 +8,6 @@ import EmptySearchForm from "../Empty/EmptySearchForm/EmptySearchForm";
 import Error from "../Error/Error";
 import Loader from "../Loader/Loader";
 import { useSneakerContext } from "../../context/SneakerProvider";
-import { motion } from "framer-motion";
 import EmptyCollection from "../Empty/EmptyCollection/EmptyCollection";
 
 const LazySneakerForm = React.lazy(
@@ -54,11 +53,7 @@ const Collection: React.FC = () => {
       <SortPanel />
       <CardsContainer>
         {sneakers.map((sneaker) => (
-          <motion.div
-            whileTap={{ scale: 0.9 }}
-            key={sneaker._id}
-            onClick={() => handleCardOnClick(sneaker)}
-          >
+          <div key={sneaker._id} onClick={() => handleCardOnClick(sneaker)}>
             <Card
               _id={sneaker._id}
               name={sneaker.name}
@@ -68,7 +63,7 @@ const Collection: React.FC = () => {
               brand={sneaker.brand}
               rate={sneaker.rate}
             />
-          </motion.div>
+          </div>
         ))}
         {isSneakerFormVisible && (
           <Suspense fallback={<Loader />}>
