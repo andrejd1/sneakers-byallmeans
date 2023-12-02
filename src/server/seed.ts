@@ -108,3 +108,38 @@ export const seedData = [
     rate: 1,
   },
 ];
+
+const generateRandomShoe = () => {
+  const brands = [
+    "Nike",
+    "Adidas",
+    "Puma",
+    "New Balance",
+    "Lacoste",
+    "Salomon",
+    "Reebok",
+  ];
+  const sizes = ["8", "9", "10", "11", "12"];
+  const years = ["2010", "2011", "2017", "2019", "2023"];
+  const rates = [1, 2, 3, 4, 5];
+
+  return {
+    _id: Math.random().toString(36).slice(2, 12), // Use slice instead of substr
+    brand: brands[Math.floor(Math.random() * brands.length)],
+    name:
+      brands[Math.floor(Math.random() * brands.length)] +
+      ` ${rates[Math.floor(Math.random() * rates.length)]}`,
+    price: (Math.floor(Math.random() * 200) + 100).toString(), // Random price between 100 and 300
+    size: sizes[Math.floor(Math.random() * sizes.length)],
+    year: years[Math.floor(Math.random() * years.length)],
+    rate: rates[Math.floor(Math.random() * rates.length)],
+  };
+};
+
+export const extendedSeedData = [...seedData];
+
+// Generate and add random shoes
+for (let i = 0; i < 999; i++) {
+  const randomShoe = generateRandomShoe();
+  extendedSeedData.push(randomShoe);
+}

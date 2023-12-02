@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
 import { Sneaker } from "../../types/sneakers";
 import SortPanel from "./SortPanel/SortPanel";
 import Card from "../Card/Card";
@@ -9,10 +9,13 @@ import Error from "../Error/Error";
 import Loader from "../Loader/Loader";
 import { useSneakerContext } from "../../context/SneakerProvider";
 import EmptyCollection from "../Empty/EmptyCollection/EmptyCollection";
+import Pagination from "../Pagination/Pagination";
 
 const LazySneakerForm = React.lazy(
   () => import("../../views/SneakerForm/SneakerForm"),
 );
+
+const SNEAKERS_PER_PAGE = 12; // Adjust the number of sneakers per page
 
 const Collection: React.FC = () => {
   const searchValue = state$.UI.searchValue;
@@ -21,6 +24,7 @@ const Collection: React.FC = () => {
     : [...state$.sneakers.get()];
   const { error, isLoading } = useSneakerContext();
   const isSneakerFormVisible = state$.UI.isSneakerFormVisible.get();
+  const [currentPage, setCurrentPage] = useState(1);
 
   if (error) {
     return (
@@ -48,29 +52,50 @@ const Collection: React.FC = () => {
     state$.UI.isSneakerFormVisible.set(true);
   };
 
+  const totalPages = Math.ceil(sneakers.length / SNEAKERS_PER_PAGE);
+
+  const renderVisibleSneakers = () => {
+    const startIndex = (currentPage - 1) * SNEAKERS_PER_PAGE;
+    const endIndex = startIndex + SNEAKERS_PER_PAGE;
+    const visibleSneakersSlice = sneakers.slice(startIndex, endIndex);
+
+    return visibleSneakersSlice.map((sneaker) => (
+      <div key={sneaker._id} onClick={() => handleCardOnClick(sneaker)}>
+        <Card
+          _id={sneaker._id}
+          name={sneaker.name}
+          year={sneaker.year}
+          size={sneaker.size}
+          price={sneaker.price}
+          brand={sneaker.brand}
+          rate={sneaker.rate}
+        />
+      </div>
+    ));
+  };
+
+  const handlePageChange = (newPage: number) => {
+    setCurrentPage(newPage);
+  };
+
   return (
     <>
       <SortPanel />
       <CardsContainer>
-        {sneakers.map((sneaker) => (
-          <div key={sneaker._id} onClick={() => handleCardOnClick(sneaker)}>
-            <Card
-              _id={sneaker._id}
-              name={sneaker.name}
-              year={sneaker.year}
-              size={sneaker.size}
-              price={sneaker.price}
-              brand={sneaker.brand}
-              rate={sneaker.rate}
-            />
-          </div>
-        ))}
+        {renderVisibleSneakers()}
         {isSneakerFormVisible && (
           <Suspense fallback={<Loader />}>
             <LazySneakerForm />
           </Suspense>
         )}
       </CardsContainer>
+      {totalPages > 1 && (
+        <Pagination
+          handlePageChange={handlePageChange}
+          currentPage={currentPage}
+          totalPages={totalPages}
+        />
+      )}
     </>
   );
 };

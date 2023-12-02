@@ -6,7 +6,7 @@ export const CardsContainer = styled.div`
   grid-template-columns: 1fr;
   grid-gap: 1rem;
   margin-top: 1.5rem;
-  margin-bottom: 8.5rem;
+  margin-bottom: 2.5rem;
 
   @media only screen and ${device.tablet} {
     margin-top: 0;

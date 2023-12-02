@@ -1,9 +1,10 @@
-import React, { ChangeEvent, useEffect } from "react";
+import React, { ChangeEvent, useCallback, useEffect } from "react";
 import { StyledSearchForm, StyledSearchFormInput } from "./SearchForm.styled";
 import Icon from "../Icon/Icon";
 import { state$ } from "../../store/store";
 import { colors } from "../../ui/theme/colors";
 import { useSneakerContext } from "../../context/SneakerProvider";
+import debounce from "lodash/debounce";
 
 const SearchForm: React.FC = () => {
   const sneakers = state$.sneakers;
@@ -32,6 +33,8 @@ const SearchForm: React.FC = () => {
     searchValue.set(e.target.value);
   };
 
+  const debounceHandleSearch = useCallback(debounce(handleChange, 500), []);
+
   return (
     <StyledSearchForm
       whileHover={{ border: `1px solid ${colors.Hover}` }}
@@ -43,7 +46,7 @@ const SearchForm: React.FC = () => {
         type="text"
         className="form-control"
         placeholder="Search"
-        onChange={handleChange}
+        onChange={debounceHandleSearch}
       />
     </StyledSearchForm>
   );
