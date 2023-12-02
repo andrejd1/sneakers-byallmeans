@@ -8,6 +8,7 @@ export const PaginationContainer = styled.div`
 
   @media only screen and ${device.desktop} {
     justify-content: space-between;
+    margin-bottom: 3rem;
   }
 `;
 export const PaginationButtonContainer = styled.div`
