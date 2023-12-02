@@ -81,7 +81,7 @@ const Collection: React.FC = () => {
   return (
     <>
       <SortPanel />
-      <CardsContainer>
+      <CardsContainer $hasPagination={totalPages > 1}>
         {renderVisibleSneakers()}
         {isSneakerFormVisible && (
           <Suspense fallback={<Loader />}>
