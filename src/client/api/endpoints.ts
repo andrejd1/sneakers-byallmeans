@@ -1,11 +1,17 @@
 import axios from "axios";
 import { Sneaker, SneakerInput } from "../types/sneakers";
+import { extendedSeedData } from "../../server/seed";
 
+// export const fetchSneakers = async (): Promise<Sneaker[]> => {
+//   const response = await axios.get(
+//     `${process.env.VITE_LOCAL_API_BASE_URL}/sneakers`,
+//   );
+//   return response.data;
+// };
+
+//mock
 export const fetchSneakers = async (): Promise<Sneaker[]> => {
-  const response = await axios.get(
-    `${process.env.VITE_LOCAL_API_BASE_URL}/sneakers`,
-  );
-  return response.data;
+  return extendedSeedData;
 };
 
 export const createSneaker = async (

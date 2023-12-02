@@ -20,10 +20,10 @@ const Pagination: React.FC<PaginationTypes> = ({
   );
 
   const renderPages = () => {
-    if (totalPages <= maxVisiblePages * 2 + 1) {
-      return visiblePages.map((page, index) => (
+    if (totalPages <= maxVisiblePages * 3 + 1) {
+      return visiblePages.map((page) => (
         <Button
-          key={index}
+          key={page}
           variant={"secondary"}
           isActive={page === currentPage}
           label={page.toString()}
@@ -40,9 +40,9 @@ const Pagination: React.FC<PaginationTypes> = ({
     if (currentPage <= maxVisiblePages) {
       const visiblePagesSubset = visiblePages.slice(0, maxVisiblePages);
       return [
-        ...visiblePagesSubset.map((page, index) => (
+        ...visiblePagesSubset.map((page) => (
           <Button
-            key={index}
+            key={page}
             variant={"secondary"}
             isActive={page === currentPage}
             label={page.toString()}
@@ -51,9 +51,9 @@ const Pagination: React.FC<PaginationTypes> = ({
           />
         )),
         <span key="ellipsis">{ellipsis}</span>,
-        ...lastPages.map((page, index) => (
+        ...lastPages.map((page) => (
           <Button
-            key={index}
+            key={page}
             variant={"secondary"}
             isActive={page === currentPage}
             label={page.toString()}
@@ -68,9 +68,9 @@ const Pagination: React.FC<PaginationTypes> = ({
     if (currentPage > totalPages - maxVisiblePages) {
       const visiblePagesSubset = visiblePages.slice(-maxVisiblePages);
       return [
-        ...firstPages.map((page, index) => (
+        ...firstPages.map((page) => (
           <Button
-            key={index}
+            key={page}
             variant={"secondary"}
             isActive={page === currentPage}
             label={page.toString()}
@@ -79,9 +79,9 @@ const Pagination: React.FC<PaginationTypes> = ({
           />
         )),
         <span key="ellipsis">{ellipsis}</span>,
-        ...visiblePagesSubset.map((page, index) => (
+        ...visiblePagesSubset.map((page) => (
           <Button
-            key={index}
+            key={page}
             variant={"secondary"}
             isActive={page === currentPage}
             label={page.toString()}
@@ -93,13 +93,17 @@ const Pagination: React.FC<PaginationTypes> = ({
     }
 
     // If current page is in the middle
-    const startPage = currentPage - maxVisiblePages;
-    const endPage = currentPage + maxVisiblePages;
+    const startPage =
+      currentPage - firstPages[firstPages.length - 1] <= 1
+        ? firstPages[firstPages.length - 1]
+        : currentPage - maxVisiblePages;
+    const endPage =
+      lastPages[0] - currentPage > 1 ? currentPage + 1 : currentPage;
 
     return [
-      ...firstPages.map((page, index) => (
+      ...firstPages.map((page) => (
         <Button
-          key={index}
+          key={page}
           variant={"secondary"}
           isActive={page === currentPage}
           label={page.toString()}
@@ -107,12 +111,12 @@ const Pagination: React.FC<PaginationTypes> = ({
           onClick={() => handlePageChange(page)}
         />
       )),
-      <span key="ellipsis">{ellipsis}</span>,
+      <span key="ellipsisStart">{ellipsis}</span>,
       ...visiblePages
         .slice(startPage, endPage)
-        .map((page, index) => (
+        .map((page) => (
           <Button
-            key={index}
+            key={page}
             variant={"secondary"}
             isActive={page === currentPage}
             label={page.toString()}
@@ -120,10 +124,10 @@ const Pagination: React.FC<PaginationTypes> = ({
             onClick={() => handlePageChange(page)}
           />
         )),
-      <span key="ellipsis">{ellipsis}</span>,
-      ...lastPages.map((page, index) => (
+      <span key="ellipsisEnd">{ellipsis}</span>,
+      ...lastPages.map((page) => (
         <Button
-          key={index}
+          key={page}
           variant={"secondary"}
           isActive={page === currentPage}
           label={page.toString()}
