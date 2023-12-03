@@ -3,6 +3,6 @@ export enum SneakerSort {
   yearDown = "Newest year",
   priceUp = "Lowest price",
   priceDown = "Highest price",
-  sizeUp = "Biggest size",
-  sizeDown = "Lowest size",
+  sizeUp = "Smallest size",
+  sizeDown = "Largest size",
 }

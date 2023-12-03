@@ -11,6 +11,7 @@ import { useSneakerContext } from "../../context/SneakerProvider";
 import EmptyCollection from "../Empty/EmptyCollection/EmptyCollection";
 import Pagination from "../Pagination/Pagination";
 import { useSearchParams } from "react-router-dom";
+import { SneakerSort } from "../../enums/sneakers";
 
 const LazySneakerForm = React.lazy(
   () => import("../../views/SneakerForm/SneakerForm"),
@@ -27,13 +28,9 @@ const Collection: React.FC = () => {
   const isSneakerFormVisible = state$.UI.isSneakerFormVisible.get();
   const [currentPage, setCurrentPage] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
-  const query = searchParams.get("page");
-
-  useEffect(() => {
-    if (query) {
-      setCurrentPage(parseInt(query));
-    }
-  }, [query]);
+  const queryPage = searchParams.get("page");
+  const querySort = searchParams.get("sort");
+  const activeSort = state$.UI.activeSort;
 
   useEffect(() => {
     setSearchParams((searchParams) => {
@@ -41,6 +38,22 @@ const Collection: React.FC = () => {
       return searchParams;
     });
   }, [currentPage]);
+
+  useEffect(() => {
+    setSearchParams((searchParams) => {
+      searchParams.set("sort", activeSort.get());
+      return searchParams;
+    });
+  }, [activeSort.get()]);
+
+  useEffect(() => {
+    if (queryPage) {
+      setCurrentPage(parseInt(queryPage));
+    }
+    if (querySort) {
+      activeSort.set(querySort as SneakerSort);
+    }
+  }, [queryPage, querySort]);
 
   if (error) {
     return (

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Typography from "../../Typography/Typography";
 import Button from "../../Button/Button";
 import {
@@ -11,26 +11,13 @@ import { useDeviceSize } from "../../../hooks/useDeviceSize";
 import { breakpointSize } from "../../../ui/theme/breakpoints";
 import { state$ } from "../../../store/store";
 import { SneakerSort } from "../../../enums/sneakers";
-import { useSearchParams } from "react-router-dom";
 
 const SortPanel: React.FC = () => {
   const { windowWidth } = useDeviceSize();
   const isTablet = windowWidth <= breakpointSize.tablet;
   const searchValue = state$.UI.searchValue.get();
   const searchResultsLength = state$.searchSneakers.get().length;
-  const [searchParams, setSearchParams] = useSearchParams();
-  const query = searchParams.get("sort");
   const activeSort = state$.UI.activeSort;
-
-  useEffect(() => {
-    if (query) {
-      activeSort.set(query as SneakerSort);
-    }
-    setSearchParams((searchParams) => {
-      searchParams.set("sort", activeSort.get());
-      return searchParams;
-    });
-  }, [query, activeSort.get()]);
 
   const isSortedByYearUp = activeSort.get() === SneakerSort.yearUp;
   const isSortedByYearDown = activeSort.get() === SneakerSort.yearDown;
