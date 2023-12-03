@@ -8,6 +8,7 @@ enableReactTracking({ auto: true });
 export const state$ = observable({
   UI: {
     activeSort: SneakerSort.yearUp as SneakerSort,
+    collectionCurrentPage: 1 as number,
     isSneakerFormVisible: false as boolean,
     activeSneaker: null as Sneaker | null,
     searchValue: "" as string,

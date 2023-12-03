@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useEffect } from "react";
 import { Sneaker } from "../../types/sneakers";
 import SortPanel from "./SortPanel/SortPanel";
 import Card from "../Card/Card";
@@ -26,18 +26,30 @@ const Collection: React.FC = () => {
     : [...state$.sneakers.get()];
   const { error, isLoading } = useSneakerContext();
   const isSneakerFormVisible = state$.UI.isSneakerFormVisible.get();
-  const [currentPage, setCurrentPage] = useState(1);
+  const collectionCurrentPage = state$.UI.collectionCurrentPage;
   const [searchParams, setSearchParams] = useSearchParams();
   const queryPage = searchParams.get("page");
   const querySort = searchParams.get("sort");
   const activeSort = state$.UI.activeSort;
 
   useEffect(() => {
+    if (queryPage) {
+      collectionCurrentPage.set(parseInt(queryPage));
+    }
+  }, [queryPage]);
+
+  useEffect(() => {
+    if (querySort) {
+      activeSort.set(querySort as SneakerSort);
+    }
+  }, [querySort]);
+
+  useEffect(() => {
     setSearchParams((searchParams) => {
-      searchParams.set("page", currentPage.toString());
+      searchParams.set("page", collectionCurrentPage.get().toString());
       return searchParams;
     });
-  }, [currentPage]);
+  }, [collectionCurrentPage.get()]);
 
   useEffect(() => {
     setSearchParams((searchParams) => {
@@ -45,15 +57,6 @@ const Collection: React.FC = () => {
       return searchParams;
     });
   }, [activeSort.get()]);
-
-  useEffect(() => {
-    if (queryPage) {
-      setCurrentPage(parseInt(queryPage));
-    }
-    if (querySort) {
-      activeSort.set(querySort as SneakerSort);
-    }
-  }, [queryPage, querySort]);
 
   if (error) {
     return (
@@ -84,7 +87,7 @@ const Collection: React.FC = () => {
   const totalPages = Math.ceil(sneakers.length / SNEAKERS_PER_PAGE);
 
   const renderVisibleSneakers = () => {
-    const startIndex = (currentPage - 1) * SNEAKERS_PER_PAGE;
+    const startIndex = (collectionCurrentPage.peek() - 1) * SNEAKERS_PER_PAGE;
     const endIndex = startIndex + SNEAKERS_PER_PAGE;
     const visibleSneakersSlice = sneakers.slice(startIndex, endIndex);
 
@@ -104,7 +107,7 @@ const Collection: React.FC = () => {
   };
 
   const handlePageChange = (newPage: number) => {
-    setCurrentPage(newPage);
+    collectionCurrentPage.set(newPage);
   };
 
   return (
@@ -121,7 +124,7 @@ const Collection: React.FC = () => {
       {totalPages > 1 && (
         <Pagination
           handlePageChange={handlePageChange}
-          currentPage={currentPage}
+          currentPage={collectionCurrentPage.peek()}
           totalPages={totalPages}
         />
       )}
