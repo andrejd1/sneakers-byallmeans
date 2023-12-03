@@ -35,12 +35,14 @@ const SearchForm: React.FC = () => {
       });
       searchSneakers.set(filtered);
       setSearchParams((searchParams) => {
+        searchParams.set("page", "1");
         searchParams.set("search", searchValue.get());
         return searchParams;
       });
     } else {
       searchSneakers.set([...sneakers.get()]);
-      setSearchParams("");
+      searchParams.delete("search");
+      setSearchParams(searchParams);
     }
   }, [searchValue.get()]);
 
