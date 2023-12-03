@@ -1,31 +1,43 @@
-import React, { ChangeEvent, useCallback, useEffect } from "react";
+import React, { ChangeEvent, useCallback, useEffect, useRef } from "react";
 import { StyledSearchForm, StyledSearchFormInput } from "./SearchForm.styled";
 import Icon from "../Icon/Icon";
 import { state$ } from "../../store/store";
 import { colors } from "../../ui/theme/colors";
 import { useSneakerContext } from "../../context/SneakerProvider";
 import debounce from "lodash/debounce";
+import { useSearchParams } from "react-router-dom";
 
 const SearchForm: React.FC = () => {
   const sneakers = state$.sneakers;
   const searchValue = state$.UI.searchValue;
   const searchSneakers = state$.searchSneakers;
   const { isLoading } = useSneakerContext();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get("search");
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    if (query && inputRef.current) {
+      searchValue.set(query);
+      inputRef.current.value = query;
+    }
+  }, [query]);
 
   useEffect(() => {
     if (searchValue.get() !== "") {
-      searchSneakers.set(
-        [...state$.sneakers.get()].filter((sneaker) => {
-          const lowerSearchValue = searchValue.get().toLowerCase();
+      const filtered = [...state$.sneakers.get()].filter((sneaker) => {
+        const lowerSearchValue = searchValue.get().toLowerCase();
 
-          return (
-            sneaker.name.toLowerCase().includes(lowerSearchValue) ||
-            sneaker.brand.toLowerCase().includes(lowerSearchValue)
-          );
-        }),
-      );
+        return (
+          sneaker.name.toLowerCase().includes(lowerSearchValue) ||
+          sneaker.brand.toLowerCase().includes(lowerSearchValue)
+        );
+      });
+      searchSneakers.set(filtered);
+      setSearchParams(`search=${searchValue.get()}`);
     } else {
       searchSneakers.set([...sneakers.get()]);
+      setSearchParams("");
     }
   }, [searchValue.get()]);
 
@@ -42,6 +54,7 @@ const SearchForm: React.FC = () => {
     >
       <Icon name="search" color="Gray80" />
       <StyledSearchFormInput
+        ref={inputRef}
         disabled={isLoading}
         type="text"
         className="form-control"
