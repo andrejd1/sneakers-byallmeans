@@ -62,7 +62,6 @@ const SearchForm: React.FC = () => {
         ref={inputRef}
         disabled={isLoading}
         type="text"
-        className="form-control"
         placeholder="Search"
         onChange={debounceHandleSearch}
       />
