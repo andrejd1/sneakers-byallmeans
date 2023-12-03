@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { Sneaker } from "../../types/sneakers";
 import SortPanel from "./SortPanel/SortPanel";
 import Card from "../Card/Card";
@@ -10,6 +10,7 @@ import Loader from "../Loader/Loader";
 import { useSneakerContext } from "../../context/SneakerProvider";
 import EmptyCollection from "../Empty/EmptyCollection/EmptyCollection";
 import Pagination from "../Pagination/Pagination";
+import { useSearchParams } from "react-router-dom";
 
 const LazySneakerForm = React.lazy(
   () => import("../../views/SneakerForm/SneakerForm"),
@@ -25,6 +26,21 @@ const Collection: React.FC = () => {
   const { error, isLoading } = useSneakerContext();
   const isSneakerFormVisible = state$.UI.isSneakerFormVisible.get();
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get("page");
+
+  useEffect(() => {
+    if (query) {
+      setCurrentPage(parseInt(query));
+    }
+  }, [query]);
+
+  useEffect(() => {
+    setSearchParams((searchParams) => {
+      searchParams.set("page", currentPage.toString());
+      return searchParams;
+    });
+  }, [currentPage]);
 
   if (error) {
     return (
