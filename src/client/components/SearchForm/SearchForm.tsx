@@ -34,7 +34,10 @@ const SearchForm: React.FC = () => {
         );
       });
       searchSneakers.set(filtered);
-      setSearchParams(`search=${searchValue.get()}`);
+      setSearchParams((searchParams) => {
+        searchParams.set("search", searchValue.get());
+        return searchParams;
+      });
     } else {
       searchSneakers.set([...sneakers.get()]);
       setSearchParams("");
